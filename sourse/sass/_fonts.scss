@@ -1,10 +1,22 @@
 
 
-@include font-face ("roboto", "../fonts/Roboto-Regular/Roboto-Regular", $file-formats: woff2 woff ttf);
-@include font-face ("roboto", "../fonts/Roboto-Bold/Roboto-Bold", bold, $file-formats: woff2 woff ttf);
-@include font-face ("roboto", "../fonts/Roboto-Medium/Roboto-Medium", 500, $file-formats: woff2 woff ttf);
-@include font-face ("roboto", "../fonts/Roboto-Black/Roboto-Black", 900, $file-formats: woff2 woff ttf);
+@include font-face ("roboto", "../fonts/Roboto-Regular/Roboto-Regular", $file-formats: woff2);
+@include font-face ("roboto", "../fonts/Roboto-Bold/Roboto-Bold", bold, $file-formats: woff2);
+@include font-face (ASPHALTICGRAINRUSBYLYAJKA, "../fonts/ASPHALTICGRAINRUSBYLYAJKA-Bold", bold, $file-formats: woff2);
+@include font-face ("PF Din Text Cond Pro", "../fonts/PFDinTextCondPro-Regular", $file-formats: woff2);
+@include font-face ("PF Din Text Cond Pro", "../fonts/PFDinTextCondPro-Medium", 500, $file-formats: woff2);
+@include font-face ("PF Din Text Cond Pro", "../fonts/PFDinTextCondPro-Bold", 700, $file-formats: woff2);
 
+.asph{
+  font-family: ASPHALTICGRAINRUSBYLYAJKA , -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  // font-family: "PF Din Text Cond Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+font-style: italic;
+text-transform: uppercase;
+}
+.pf{
+  font-family: "PF Din Text Cond Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
 
 // font-weight helper:
 

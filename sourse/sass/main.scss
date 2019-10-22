@@ -4,6 +4,7 @@ $output-bourbon-deprecation-warnings: false;
 // @import "../../node_modules/rfs/scss";
  
 @import "mixin";
+@import "vars";
 @import "fonts";
 @import "./public/img/svg/_sprite";
 // @import "bootstrap-theme/bootstrap";
@@ -16,9 +17,8 @@ $output-bourbon-deprecation-warnings: false;
 @import "./node_modules/bootstrap/scss/variables";
 @import "./node_modules/bootstrap/scss/mixins";
 
-@import "vars";
 
-$theme-colors: map-remove($theme-colors, "info", "light", "dark",'warning');
+$theme-colors: map-remove($theme-colors, "info",   "dark",'warning');
 @import "./node_modules/bootstrap/scss/root";
 @import "./node_modules/bootstrap/scss/reboot";
 @import "./node_modules/bootstrap/scss/type";

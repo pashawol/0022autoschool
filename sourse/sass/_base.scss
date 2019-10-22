@@ -17,20 +17,50 @@ html {
 }  
 body,
 html {
-	font-size: $em-base;
+	@include media-breakpoint-up(xl) {
+
+		
+		font-size: $em-base;
+	}
+	
+	@include media-breakpoint-up(md) {
+
+		
+		// font-size: $em-base;
+		font-size: 13px;
+	}
+
+	font-size: rem(13);
 	// @include font-size(1rem);
 } 
 .section { 
 	@include bgs; 
-		padding-top: rem(40px);
-		padding-bottom: rem(40px); 
+		padding-top: rem(65px);
+		padding-bottom: rem(60px); 
 }
 
 .section-title {
 	@extend .h2;
-	padding-bottom: em(10); 
+	padding-bottom: rem(25); 
+	&__text{
+		@include rfs(rem(24));
+		@extend .pf;
+		color: $primary;  
+		font-weight: 500;
+		line-height: 1.24;
+		text-transform: uppercase;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: rem(790);
+		// margin-bottom: rem(35);
+	}
 	>h2 {
-		font-size: inherit;
+		// font-size: inherit;
+		@extend .asph;
+		letter-spacing: rem(6.1px);
+		span{
+			display: inline-block;
+		}
 		
 		@include media-breakpoint-up(md) {}
 	}
@@ -43,6 +73,7 @@ body {
 		content: ''; position: absolute; 	left: 0; 	top: 0; 	width: 100%; height: 100%; @include mt; 	background-color: #000000; opacity: 0; 	z-index: -1; top: 0;
 	} 
 	&.fixed {
+		width: 100vw;
 		overflow: hidden; position: absolute; width: 100%; left: 0; top: 0; z-index: 999; 
 		&::before {
 			z-index: 999; 
@@ -226,8 +257,7 @@ transition: all 0.3s ease-out;
 
 .slick-arrow {
 	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
+	bottom: 0;
 	z-index: 2;
 	cursor: pointer;
 
@@ -237,22 +267,34 @@ transition: all 0.3s ease-out;
 	}
 
 	cursor: pointer;
-
+	
 	&.l {
-		left: 0;
+		left: calc(50% + 15px);
+		// margin-right: 15px;
+	}
+	
+	&.r {
+		right: calc(50% + 15px);
+		// margin-left: 15px;
+		
 		svg {
 			@include transform(rotateY(180deg));
 		}
 	}
 
-	&.r {
-		right: 0;
-
-	}
-
 	svg {
-		width: 17px;
-		height: auto;
+		width: rem(28 * 1.2);
+		height: rem(20 * 1.2);
+		@include mt;
+	}
+			path{
+				fill: #b7b7b7;
+			}
+	&:hover,
+	&.slick-active{
+		path{
+			fill: $primary !important;
+		}
 	}
 }
 
@@ -348,50 +390,7 @@ input::-webkit-inner-spin-button {
 .control-wrap{
 	position: relative;
 }
-
-.swiper-button-hand{
-	width: 45px;
-	height: 16px;
-	@include bgs;
-	z-index: 300;
-	outline: none !important;
-	// margin-bottom: 0;
-	background-image: none;
-	margin: 0;
-	@include a-cent(y);
-	&-next{
-		// background-image: url(../img/arr-right.png);
-		right: 0;
-	}
-	&-prev{
-		left: 0;
-		// background-image: url(../img/arr-left.png);
-
-	}
-
-}
-
-.swiper-pagination{
-	width: 100%;
-	text-align: center;
-	&-bullet{
-		opacity: 1;
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background-color: $secondary;
-		outline: none !important;
-		@include mt;
-		margin-left: rem(8);
-		// padding-right: rem(8);
-		margin-right: rem(5);
-		&-active,
-		&:hover{
-			background-color: $primary;
-		}
-	}
-}
-
+ 
 
 
 
@@ -427,7 +426,7 @@ picture{
 
 
 a{
-	@include mt;
+	// @include mt;
 }
 
 .picture-bg{
@@ -445,4 +444,35 @@ a{
 	z-index: 2;
 }
 
+
+.btn{
+	// font-weight: 500;
+	text-transform: uppercase;
+}
 // .pagination-wrapper li
+.animate-js{
+	display: block;
+position: absolute;
+background: rgba(255, 255, 255, 0.3);
+border-radius: 100%;
+transform: scale(0);
+-webkit-transform: scale(0);
+-mox-transform: scale(0);
+z-index: 2 !important;
+position: absolute !important;
+}
+.btn_animate {
+  animation: ripple .65s linear
+
+	}
+	 
+@keyframes ripple {
+	100% {
+		opacity: 0;
+		transform: scale(2.5)
+	}
+}
+.btn-js{
+	overflow: hidden;
+	position: relative;
+}

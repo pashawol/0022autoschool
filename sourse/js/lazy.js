@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 					if (lazyImage.tagName == 'IMG' ) { 
 						lazyImage.src = lazyImage.dataset.src;
-						lazyImage.srcset = lazyImage.dataset.srcset;
+						// lazyImage.srcset = lazyImage.dataset.srcset;
 						lazyImage.removeAttribute("data-srcset"); 
 						lazyImage.removeAttribute("data-src"); 
 					}

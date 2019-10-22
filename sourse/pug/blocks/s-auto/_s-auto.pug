@@ -1,0 +1,21 @@
+mixin s-auto()
+	// start s-auto
+	+b.SECTION.s-auto.section#s-auto&attributes(attributes)
+		.container
+			+b.section-title.text-center
+				h2 наш автопарк
+				+e.text В&nbsp;нашем автопарке полностью исправные и&nbsp;комфортные автомобили
+				
+			+e.slider.two-slide-js
+				mixin slide(x,t)
+					+e.slide
+						+e.img-wrap() 
+							img(src="#" data-lazy=`img/@2x/auto-${x}.jpg`, alt="")
+						+e.title= t
+					// +e.slide
+				+slide("1",'lada vesta')
+				+slide("2",'renault logan')
+				+slide("3",'lada kalina')
+				+slide("4",'lada granta')
+				+slide("5",'lada kalina')
+	// end s-auto

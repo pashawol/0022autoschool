@@ -1,0 +1,5 @@
+JSCCommons-tariffs();
+	s-tariffs() {
+
+	}
+	

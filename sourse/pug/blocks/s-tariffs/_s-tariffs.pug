@@ -1,0 +1,75 @@
+mixin s-tariffs()
+	// start s-tariffs
+	+b.SECTION.s-tariffs.section#s-tariffs&attributes(attributes)
+		.container
+			+b.section-title.text-center
+				h2 выбери удобный тариф 
+					| 
+					span.text-primary и поехали!
+			.row
+				mixin item(i, t, time, pr, timefor="набор до 28 октября 2019", place="осталось 5 мест из 20")
+					+e.col.col-lg-4
+						+e.item
+							+e.body
+								+b.star-block
+									+icon("star",'star-active')
+									if i!== 1
+										+icon("star",'star-active')
+									else
+										+icon("star")
+									if i== 3
+										+icon("star",'star-active')
+									else
+										+icon("star")
+								+e.title=t
+								.text-secondary= time
+								+pic(`tariff-${i}.png`,'','lazy',0)
+								p ГСМ (бензин)
+
+								p Страховка от ДТП
+
+								p Сами выбираете время вождения
+
+								p Теоретическая курс 132 часа
+								if i== 1
+									p Практический курс для подготовки к&nbsp;сдаче экзаменов
+
+									p Подача документов в&nbsp;МРЭО
+
+									p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+								else
+									p.strong Автосимулятор
+									p Практический курс для подготовки к&nbsp;сдаче экзаменов
+
+									p.strong  Отработка экзаменационного маршрута
+
+									p Подача документов в&nbsp;МРЭО
+
+									p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+									if i== 3
+										p.strong  Индивидуальные практические занятия с&nbsp;проработкой нужных маршрутов 
+										p.strong  Отработка контр-аварийного вожедния
+
+									p.strong  При неудачной сдаче экзамена в&nbsp;МРЭО&nbsp;&mdash; занятие с&nbsp;разбором ошибок
+								p Персональный инструктор
+
+								p Первый взнос 1000 рублей
+
+								p Рассрочка без %&nbsp;и&nbsp;банков 
+								p.strong Вебинарное обучение в&nbsp;подарок 
+									span.text-danger до 28.10.19
+								+b.stock-block
+									- for (var x = 1; x <= 3; x++)
+										+e.item()
+											img.lazy(src="#" data-src=`img/@2x/tariff-stock-${x}.jpg`, alt="")
+
+							+e.foot
+								+e.price= pr
+								+e.timefor= timefor
+								+e.btn.btn-js(href="#") Записаться
+								.text-secondary= place
+					// /+e.col.col-lg-4
+				+item(1,'стандартный','от 1,5 месяцев','10 500 руб.')
+				+item(2,'комфортный','от 2 месяцев','15 000 руб.')
+				+item(3,'персональный','от 2,5 месяцев','23 000 руб.')
+	// end s-tariffs

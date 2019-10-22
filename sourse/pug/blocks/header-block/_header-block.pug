@@ -1,7 +1,35 @@
 mixin header-block()
 	// start header-block
-	+b.header-block#header-block
+	+b.header-block#header-block(data-bg="img/@2x/header-bg.jpg")
 		.container
-			h1 header-block
+			+e.top-text.d-lg-none  АВТОШКОЛА В ТОЛЬЯТТИ 
+				|
+				span.text-primary ОТ 7000 руб.
+			h1 Уже смотрели сайты конкурентов?
+			+e.sub-text У&nbsp;нас вы&nbsp;получаете ряд преимуществ, которые не&nbsp;доступны в&nbsp;других автошколах:
 			.row
+				mixin item(i)
+					+e.col.col-lg-3.col-6
+						+e.icon-wrap
+							img.lazy.res-i(src="#" data-src=`img/svg/${i}`, alt="")
+						block
+					// /+e.col.col-lg-3.col-6
+				+item("wallet.svg")
+					+e.text Начни обучение за&nbsp;1000&nbsp;руб. Не&nbsp;понравится&nbsp;&mdash; вернём деньги!
+				+item("tv.svg")
+					+e.text Вебинарное обучение в&nbsp;подарок каждому ученику 
+						|
+						span.text-danger до&nbsp;28.10.2019
+				+item("businessman.svg")
+					+e.text Персональный инструктор у&nbsp;каждого ученика
+				+item("shield.svg")
+					+e.text При неудачной сдаче экзамена в&nbsp;МРЭО&nbsp;&mdash; занятие с&nbsp;разбором ошибок
+			+e.slider-title записывайся и&nbsp;выигрывай 
+				| 
+				span.text-primary реальные призы:
+			+e.slider.two-slide-js
+				- for (var x = 1; x <= 3; x++)
+					+e.slide
+						+e.img-wrap(href="#") 
+							img(src="#" data-lazy=`img/@2x/stock-slide-${x}.jpg`, alt="")
 	// end header-block

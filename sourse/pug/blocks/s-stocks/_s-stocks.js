@@ -1,0 +1,5 @@
+JSCCommons-stocks();
+	s-stocks() {
+
+	}
+	

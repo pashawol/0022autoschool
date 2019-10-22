@@ -2,5 +2,25 @@ mixin top-line()
 	// start .top-line
 	+b.top-line.block-with-lazy
 		.container
-			.row top-line
+			.row
+				.col.d-lg-none
+					+b.toggle-menu-mobile--js.d-lg-none
+						span
+				.col.d-none.d-lg-block
+					+e.text АВТОШКОЛА В ТОЛЬЯТТИ 
+						|
+						span.text-secondary ОТ 7000 руб.
+				.col-auto
+					+e.logo-wrap
+						a(href="#")
+							img(src="img/svg/logo.svg", alt="")
+				.col
+					.row
+						.col-auto
+							+e.tel(href="tel:+7(8482)78-36-77")
+								+e.SPAN.icon-wrap.d-lg-none.btn-js
+									+icon("viber")
+								span.d-none.d-lg-block +7 (8482) 78-36-77
+						.col-auto.d-none.d-lg-block
+							+e.btn.btn-js(href="#") записаться в 1 клик
 	// end .top-line

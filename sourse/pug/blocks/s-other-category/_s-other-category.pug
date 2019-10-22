@@ -1,0 +1,26 @@
+mixin s-other-category()
+	// start s-other-category
+	+b.SECTION.s-other-category.section#s-other-category&attributes(attributes)
+		.container
+			+b.section-title.text-center
+				h2 другие категории
+				+e.text Водительские права&nbsp;&mdash; это не&nbsp;только удобство и&nbsp;возможность управлять личным автомобилем, но&nbsp;и&nbsp;возможность заработка
+				
+			+e.slider--js
+				mixin item(i,t,p,pr)
+					+e.slide
+						+e.item
+							+e.body
+								+e.title=t
+								.text-secondary= p
+								+e.img-wrap
+									img.res-i(src="#" data-lazy=`img/@2x/category-${i}.png`, alt="")
+							+e.foot
+								+e.price=pr
+								+e.btn.btn-js(href="#") узнать подробнее
+					// /+e.slide
+				+item("1",'категория «а»','Мотоцикл','от 7 000 руб.')
+				+item("2",'категория «c»','Грузовик','от 10 000 руб.')
+				+item("3",'категория «d»','Автобус','от 10 000 руб.')
+				+item("4",'категория «e»','Прицеп','от 10 000 руб.')
+	// end s-other-category

@@ -105,48 +105,39 @@ mixin soc()
 			+icon('vk')
 //- /scial buttons
 //- WP menu
-//- mixin mnu()
-//- 	-
-//- 		var nav= { 
-//- 			"Наши работы":"#",
-//- 			"Цены":"#",
-//- 			"Калькулятор":"#",
-//- 			"Акции":"#" ,
-//- 			"Заказать":"#",
-//- 			}
-//- 	ul.menu
-//- 		li.menu-item.menu-item-has-children
-//- 			a(href="#") О нас
-//- 			ul.sub-menu
-//- 				-
-//- 					var subnav= { 
-//- 						"Строительство загородных домов":"#",
-//- 						"Отделка загородных домов":"#",
-//- 						"Покраска деревянных домов":"#",
-//- 						"Штукатурные фасады загородных домов":"#" ,
-//- 						}
-//- 				each sublinkPatch, sublinkName in nav
-//- 					li.menu-item: a(href= sublinkPatch)= sublinkName
-//- 		each linkPatch, linkName in nav
-//- 			li.menu-item: a(href= linkPatch)= linkName
-
-//- menu
 mixin mnu()
 	-
-		var nav= {
-			"Продукция ":"#",
-			"Услуги  ":"#",
-			"Подбор септика   ":"#",
-			"Акции ":"#"," О компании  ":"#",
-			" Доставка и оплата ":"#",
-			" Клиентам  ":"#",
-			" Наши работы   ":"#",
-			"Контакты ":"#"
+		var nav= { 
+			"Главная":"/",
+			"цены":"#",
+			"об автошколе":"#",
+			"Услуги":"#" ,
+			"Отзывы":"#",
+			"сертификат":"#",
+			"Контакты":"#",
+			"Акции":"#",
 			}
-	+e.UL.nav(itemscope itemtype="http://schema.org/SiteNavigationElement")
+	ul.menu(itemscope itemtype="http://schema.org/SiteNavigationElement") 
 		each linkPatch, linkName in nav
-			+e.LI.item( itemprop="item" ): +e.A.link(href= linkPatch  itemprop="url")= linkName
-//- /menu
+			li.menu-item(itemprop="item" ): a(href= linkPatch itemprop="url")= linkName
+
+//- //- menu
+//- mixin mnu()
+//- 	-
+//- 		var nav= {
+//- 			"Главная":"/",
+//- 			"Услуги  ":"#",
+//- 			"Подбор септика   ":"#",
+//- 			"Акции ":"#"," О компании  ":"#",
+//- 			" Доставка и оплата ":"#",
+//- 			" Клиентам  ":"#",
+//- 			" Наши работы   ":"#",
+//- 			"Контакты ":"#"
+//- 			}
+//- 	+e.UL.nav(itemscope itemtype="http://schema.org/SiteNavigationElement")
+//- 		each linkPatch, linkName in nav
+//- 			+e.LI.item( itemprop="item" ): +e.A.link(href= linkPatch  itemprop="url")= linkName
+//- //- /menu
 
 
 
