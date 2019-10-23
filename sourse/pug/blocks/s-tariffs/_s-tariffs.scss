@@ -110,7 +110,11 @@
 
 }
 
-
+.popover{
+ 
+	// padding: rem(10)  rem(10);
+	// border-color: #dadde2;
+}
 .stock-block{
 	 
 	@extend .row;
@@ -123,6 +127,7 @@
 		width: rem(70);
 		height: rem(70);
 		border-radius: 15px;
+		outline: none;
 	
 		img
 		{

@@ -9,13 +9,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var $ = jQuery;
 var btnToggle = $(".toggle-menu-mobile--js"),
 		menu = $(".menu-mobile--js");
-$('[data-toggle="popover"]').popover({
-	// trigger: 'focus'
-	placement: 'auto'
-});
 
 function eventHandler() {
-	// полифил для object-fit
+	$('[data-toggle="popover"]').popover({
+		placement: 'top'
+	}); // полифил для object-fit
+
 	objectFitImages(); // Picture element HTML5 shiv
 
 	document.createElement("picture"); // для свг

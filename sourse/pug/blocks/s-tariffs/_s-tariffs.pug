@@ -58,9 +58,12 @@ mixin s-tariffs()
 								p Рассрочка без %&nbsp;и&nbsp;банков 
 								p.strong Вебинарное обучение в&nbsp;подарок 
 									span.text-danger до 28.10.19
+							 
 								+b.stock-block
+									//- <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
 									- for (var x = 1; x <= 3; x++)
-										+e.item( data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?")
+										//- 
+										+e.item( role="button" data-toggle="popover"  data-trigger="focus"   tabindex="0"  data-content="Записывайтесь на обучение и принимайте участие в розыгрыше приза AirPods.")
 											img.lazy(src="#" data-src=`img/@2x/tariff-stock-${x}.jpg`, alt="")
 											//- +e.dropdown 
 

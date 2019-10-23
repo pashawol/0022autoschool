@@ -3,12 +3,12 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 	menu = $(".menu-mobile--js")
 
 	
-		$('[data-toggle="popover"]').popover({
-			// trigger: 'focus'
-			placement: 'auto'
+	function 	eventHandler() {
+		$('[data-toggle="popover"]').popover({ 
+			placement: 'top'
 		})
-function 	eventHandler() {
-	// полифил для object-fit
+		
+		// полифил для object-fit
 	objectFitImages();
 	// Picture element HTML5 shiv
 	document.createElement("picture");
