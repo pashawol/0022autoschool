@@ -9,6 +9,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var $ = jQuery;
 var btnToggle = $(".toggle-menu-mobile--js"),
 		menu = $(".menu-mobile--js");
+$('[data-toggle="popover"]').popover({
+	// trigger: 'focus'
+	placement: 'auto'
+});
 
 function eventHandler() {
 	// полифил для object-fit
@@ -22,8 +26,8 @@ function eventHandler() {
 	JSCCommon.mobileMenu();
 	JSCCommon.inputMask(); // JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
-
-	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/1.jpg);"></div>'); // /добавляет подложку для pixel perfect
+	// $(".main-wrapper").after('<div class="screen" style="background-image: url(screen/1.jpg);"></div>')
+	// /добавляет подложку для pixel perfect
 
 	var url = document.location.href;
 	$.each($(".top-nav a , .menu-mobile__inner li a"), function () {
@@ -92,7 +96,7 @@ function eventHandler() {
 			arrr2 = ' <div class="l">' + icon; // // карусель
 
 	var defaultSlide = {
-		speed: 600,
+		speed: 200,
 		infinite: true,
 		arrows: true,
 		mobileFirst: true,
@@ -102,26 +106,6 @@ function eventHandler() {
 		autoplaySpeed: 6000,
 		lazyLoad: 'ondemand'
 	};
-	$('.s-gal__slider--js').slick(_objectSpread({}, defaultSlide, {
-		slidesToShow: 1,
-		responsive: [{
-			breakpoint: 1200,
-			settings: {
-				slidesToShow: 4
-			}
-		}, {
-			breakpoint: 992,
-			settings: {
-				slidesToShow: 3
-			}
-		}, {
-			breakpoint: 576,
-			settings: {
-				slidesToShow: 2,
-				arrows: true
-			}
-		}]
-	}));
 	$('.s-other-category__slider--js').slick(_objectSpread({}, defaultSlide, {
 		slidesToShow: 1,
 		responsive: [{
@@ -144,54 +128,30 @@ function eventHandler() {
 				slidesToShow: 2
 			}
 		}]
-	})); // $('.s-gal__slider\
-	// ,.slider-for2 ')
-	// 	.on('lazyLoaded', function (event, slick, image, imageSource) {
-	// 		image.parent().css('background-image', 'url(' + image.attr('src') + ')');
-	// 	});
-	// slider
-	// const swiper4 = new Swiper('.color-slider', {
-	// 	// slidesPerView: 5,
-	// 	slidesPerView: 'auto',
-	// 	watchOverflow: true,
-	// 	spaceBetween: 0,
-	// 	freeMode: true,
-	// 	watchOverflow: true,
-	// 	slidesPerGroup: 3,
-	// 	// centeredSlides: true,
-	// 	loop: true,
-	// 	loopFillGroupWithBlank: true,
-	// 	touchRatio: 0.2,
-	// 	slideToClickedSlide: true,
-	// 	freeModeMomentum: true,
-	// 	navigation: {
-	// 		nextEl: '.swiper-button-next',
-	// 		prevEl: '.swiper-button-prev',
-	// 	},
-	// });
-	// modal window
-	// или
-	// $(".dropzone").dropzone({
-	//  url: "/file/post",
-	//  addRemoveLinks: true,
-	//      acceptedFiles: 'image/*',
-	//      uploadMultiple: true,
-	//   });
-	// $(".wow-wrap").each(function () {
-	// const wowAnim = $(this).find(".s-dop__col," +
-	//                 ".s-pick__col," +
-	//                 ".s-condition__col");
-	// wowAnim.each(function(i){
-	// wowAnim.eq(i).attr("data-wow-delay", i*.1*2 + "s");
-	//    const wow = new WOW({ mobile: false });
-	//         wow.init();
-	// });
-	// });
-	// form
+	}));
+
+	var gets = function () {
+		var a = window.location.search;
+		var b = new Object();
+		var c;
+		a = a.substring(1).split("&");
+
+		for (var i = 0; i < a.length; i++) {
+			c = a[i].split("=");
+			b[c[0]] = c[1];
+		}
+
+		return b;
+	}(); // form
+
 
 	$("form").submit(function () {
 		//Change
 		var th = $(this);
+		th.find('.utm_source').val(decodeURIComponent(gets['utm_source'] || ''));
+		th.find('.utm_term').val(decodeURIComponent(gets['utm_term'] || ''));
+		th.find('.utm_medium').val(decodeURIComponent(gets['utm_medium'] || ''));
+		th.find('.utm_campaign').val(decodeURIComponent(gets['utm_campaign'] || ''));
 		$.ajax({
 			type: "POST",
 			url: 'action.php',
@@ -216,7 +176,10 @@ function eventHandler() {
 		});
 		return false;
 	}); // /form
-	// анимация кнопок
+
+	$('.form-wrap__polite input').change(function () {
+		$(this).parents('form').find('.form-wrap__btn').toggleClass('disabled');
+	}); // анимация кнопок
 
 	$(".btn-js").each(function () {
 		var B = $(this);
@@ -280,11 +243,41 @@ var JSCCommon = {
 		$(".link-modal").fancybox({
 			arrows: false,
 			infobar: false,
-			touch: false // type : 'inline',
+			touch: false,
+			i18n: {
+				en: {
+					CLOSE: "Закрыть",
+					NEXT: "Вперед",
+					PREV: "Назад" // PLAY_START: "Start slideshow",
+					// PLAY_STOP: "Pause slideshow",
+					// FULL_SCREEN: "Full screen",
+					// THUMBS: "Thumbnails",
+					// DOWNLOAD: "Download",
+					// SHARE: "Share",
+					// ZOOM: "Zoom"
+
+				}
+			} // type : 'inline',
 
 		});
 		$(".modal-close-js").click(function () {
 			$.fancybox.close();
+		});
+		$(document).on('click', '.link-modal-stock-js', function () {
+			console.log($(this).attr("href"));
+			$($(this).attr("href") + " .modal-content").html($(this).parent().find('.js-block').html());
+		});
+		$(document).on('click', '.link-modal', function () {
+			var th = $(this);
+			var modal = th.attr('href');
+			$(modal).find(".order").val(th.data('order'));
+			$(modal).find(".form-wrap__title--js").html(th.data('title')); // $(modal).find(".form-wrap__text--js").html(th.data('text')); 
+
+			$(modal).find(".form-wrap__btn").text(th.data('btn'));
+
+			if ($(this).hasClass("modal-win__btn")) {
+				$(modal).find(".order").val("Акция: " + th.parent().find(".title").text());
+			}
 		});
 	},
 	// /magnificPopupCall
@@ -332,7 +325,7 @@ var JSCCommon = {
 	// /CustomYoutubeBlock
 	inputMask: function inputMask() {
 		// mask for input
-		$('input[type="tel"]').attr("pattern", "[+][0-9]{1}[(][0-9]{3}[)][0-9]{3}-[0-9]{2}-[0-9]{2}").inputmask("+9(999)999-99-99");
+		$('input[type="tel"]').attr("pattern", "[+][0-9]{1}[(][0-9]{3}[)]-[0-9]{3}-[0-9]{2}-[0-9]{2}").inputmask("+9(999)-999-99-99");
 	} // /inputMask
 
 }; // JSCCommon.LazyFunction();

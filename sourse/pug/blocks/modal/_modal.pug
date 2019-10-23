@@ -32,15 +32,21 @@ mixin modal()
 	//- 			.h3 Скоро с Вами свяжутся
 	//- 			br 
 	.d-none
+		+b.modal-win--stock(id="modal-stock" class="   modal-form" )
+			.modal-content
+			+e.btn.link-modal(href="#modal-call" data-title="Принять участие в акции" data-btn="Принять участие в акции" data-order="")  Принять участие в акции
+		// #modal-stock
+		
 		+form-wrap()(id="modal-call" class="  modal-win modal-form" )
 			.text-center
-				+e.title.h3.ttu Обратный звонок
-				p Заполните заявку и&nbsp;мы&nbsp;с&nbsp;Вами свяжемся в&nbsp;течении 15&nbsp;минут
-			+input("Ваше Имя")(required) 
-			+input("Ваш телефон","tel")(required)
+				+e.title--js
+				p Заполните форму, мы&nbsp;свяжемся с&nbsp;Вами сразу как получим вашу заявку.
+			+input("Введите имя")(required) 
+			+input("+_(___)-___-__-__","tel")(required)
 			//- +input("email","Ваше email")(required)
 			//- +text( "Комментарий")
-			+e.INPUT.btn(type="submit" value="Рассчитать") 
+			+e.BUTTON.btn(type="submit") 
 			+polite()
 		// #modal-call
+
 	// modal

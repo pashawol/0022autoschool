@@ -25,14 +25,14 @@
 	color: #ffffff;
 	h1{
 		@include media-breakpoint-up(xl) {
-			font-size: rem(90);
+			font-size: rem(68);
 		}
-		@include rfs(rem(70));
+		@include rfs(rem(60));
 		@extend .asph;
 		font-style: italic;
 		text-transform: uppercase;
 		// Text style for "Уже смотре"
-		letter-spacing: rem(7.2px);
+		// letter-spacing: rem(7.2px);
 		line-height: 1;
 	}
 	&__sub-text{
@@ -99,9 +99,10 @@
 		@extend .pf;
 	}
 	&__slider-title{
-		@include rfs(rem(42));
+		// @include rfs(rem(42));
+		@extend .h5;		
 		@extend .asph;
-		margin-bottom: rem(10);
+		margin-bottom: rem(18);
 		span{
 			display: inline-block;
 		}
@@ -117,12 +118,15 @@
 	}
 	&__img-wrap{
 		display: block;
-		box-shadow: 0 10px 30px rgba(32, 22, 0, 0.2);
+	
 		border-radius: 15px;
 		background-color: #3b3b3b;
 		overflow: hidden;
 		position: relative;
-		@include block(554,210)
+		@include block(554,210);
+		&:hover{
+			box-shadow: 0 10px 30px rgba(32, 22, 0, 0.2);
+		}
 		img{
 			object-fit: cover;
 			width: 100%;

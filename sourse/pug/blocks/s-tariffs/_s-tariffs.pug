@@ -60,13 +60,14 @@ mixin s-tariffs()
 									span.text-danger до 28.10.19
 								+b.stock-block
 									- for (var x = 1; x <= 3; x++)
-										+e.item()
+										+e.item( data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?")
 											img.lazy(src="#" data-src=`img/@2x/tariff-stock-${x}.jpg`, alt="")
+											//- +e.dropdown 
 
 							+e.foot
 								+e.price= pr
 								+e.timefor= timefor
-								+e.btn.btn-js(href="#") Записаться
+								+e.btn.btn-js.link-modal(href="#modal-call" data-title=`Тариф "${t}"` data-btn="Записаться" data-order=`Записаться по тарифу "${t}"`) Записаться
 								.text-secondary= place
 					// /+e.col.col-lg-4
 				+item(1,'стандартный','от 1,5 месяцев','10 500 руб.')

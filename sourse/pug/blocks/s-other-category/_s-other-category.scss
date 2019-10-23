@@ -61,9 +61,8 @@
 
 	&__title{
 		@extend .asph;
-		@extend .h4;
+		@include rfs(rem(29));
 		line-height: 1;
-		letter-spacing: rem(3.2px);
 	}
 	&__img-wrap{
 		margin-top: rem(20);

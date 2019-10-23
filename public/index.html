@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" type="image/ico" href="img/favicon/favicon.ico">
 		<!-- Custom Browsers Color-->
 		<meta name="theme-color" content="#ffb000">
-		<link rel="stylesheet" href="libs/slick-slider/slick/slick.css"/>
+		<link rel="stylesheet" href="libs/slick-carousel/slick/slick.css"/>
 		<link rel="stylesheet" href="libs/@fancyapps/fancybox/jquery.fancybox.min.css"/>
 		<link rel="stylesheet" href="css/main.min.css"/>
 	</head>
@@ -77,7 +77,7 @@
 											<use xlink:href="img/svg/sprite.svg#viber"></use>
 										</svg></span><span class="d-none d-lg-block">+7 (8482) 78-36-77</span></a>
 									</div>
-									<div class="col-auto d-none d-lg-block"><a class="top-line__btn btn-js" href="#">записаться в 1 клик</a>
+									<div class="col-auto d-none d-lg-block"><a class="top-line__btn btn-js link-modal" href="#modal-call" data-title="записаться в 1 клик" data-btn="записаться в 1 клик" data-order="записаться в 1 клик">записаться в 1 клик</a>
 									</div>
 								</div>
 							</div>
@@ -131,11 +131,32 @@
 						записывайся и&nbsp;выигрывай  <span class="text-primary">реальные призы:</span>
 					</div>
 					<div class="header-block__slider two-slide-js">
-						<div class="header-block__slide"><a class="header-block__img-wrap" href="#"> <img src="#" data-lazy="img/@2x/stock-slide-1.jpg" alt=""/></a>
+						<div class="header-block__slide"><a class="header-block__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img src="#" data-lazy="img/stock-slide-1.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 1</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
-						<div class="header-block__slide"><a class="header-block__img-wrap" href="#"> <img src="#" data-lazy="img/@2x/stock-slide-2.jpg" alt=""/></a>
+						<div class="header-block__slide"><a class="header-block__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img src="#" data-lazy="img/stock-slide-2.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 2</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
-						<div class="header-block__slide"><a class="header-block__img-wrap" href="#"> <img src="#" data-lazy="img/@2x/stock-slide-3.jpg" alt=""/></a>
+						<div class="header-block__slide"><a class="header-block__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img src="#" data-lazy="img/stock-slide-3.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 3</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -184,11 +205,11 @@
 											<p>Рассрочка без %&nbsp;и&nbsp;банков </p>
 											<p class="strong">Вебинарное обучение в&nbsp;подарок <span class="text-danger">до 28.10.19</span></p>
 											<div class="stock-block">
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-1.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-1.jpg" alt=""/>
 												</div>
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-2.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-2.jpg" alt=""/>
 												</div>
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-3.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-3.jpg" alt=""/>
 												</div>
 											</div>
 										</div>
@@ -196,7 +217,7 @@
 											<div class="s-tariffs__price">10 500 руб.
 											</div>
 											<div class="s-tariffs__timefor">набор до 28 октября 2019
-											</div><a class="s-tariffs__btn btn-js" href="#">Записаться</a>
+											</div><a class="s-tariffs__btn btn-js link-modal" href="#modal-call" data-title="Тариф &quot;стандартный&quot;" data-btn="Записаться" data-order="Записаться по тарифу &quot;стандартный&quot;">Записаться</a>
 											<div class="text-secondary">осталось 5 мест из 20</div>
 										</div>
 									</div>
@@ -240,11 +261,11 @@
 											<p>Рассрочка без %&nbsp;и&nbsp;банков </p>
 											<p class="strong">Вебинарное обучение в&nbsp;подарок <span class="text-danger">до 28.10.19</span></p>
 											<div class="stock-block">
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-1.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-1.jpg" alt=""/>
 												</div>
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-2.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-2.jpg" alt=""/>
 												</div>
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-3.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-3.jpg" alt=""/>
 												</div>
 											</div>
 										</div>
@@ -252,7 +273,7 @@
 											<div class="s-tariffs__price">15 000 руб.
 											</div>
 											<div class="s-tariffs__timefor">набор до 28 октября 2019
-											</div><a class="s-tariffs__btn btn-js" href="#">Записаться</a>
+											</div><a class="s-tariffs__btn btn-js link-modal" href="#modal-call" data-title="Тариф &quot;комфортный&quot;" data-btn="Записаться" data-order="Записаться по тарифу &quot;комфортный&quot;">Записаться</a>
 											<div class="text-secondary">осталось 5 мест из 20</div>
 										</div>
 									</div>
@@ -298,11 +319,11 @@
 											<p>Рассрочка без %&nbsp;и&nbsp;банков </p>
 											<p class="strong">Вебинарное обучение в&nbsp;подарок <span class="text-danger">до 28.10.19</span></p>
 											<div class="stock-block">
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-1.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-1.jpg" alt=""/>
 												</div>
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-2.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-2.jpg" alt=""/>
 												</div>
-												<div class="stock-block__item"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-3.jpg" alt=""/>
+												<div class="stock-block__item" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"><img class="lazy" src="#" data-src="img/@2x/tariff-stock-3.jpg" alt=""/>
 												</div>
 											</div>
 										</div>
@@ -310,7 +331,7 @@
 											<div class="s-tariffs__price">23 000 руб.
 											</div>
 											<div class="s-tariffs__timefor">набор до 28 октября 2019
-											</div><a class="s-tariffs__btn btn-js" href="#">Записаться</a>
+											</div><a class="s-tariffs__btn btn-js link-modal" href="#modal-call" data-title="Тариф &quot;персональный&quot;" data-btn="Записаться" data-order="Записаться по тарифу &quot;персональный&quot;">Записаться</a>
 											<div class="text-secondary">осталось 5 мест из 20</div>
 										</div>
 									</div>
@@ -340,7 +361,7 @@
 								</div>
 								<div class="s-other-category__foot">
 									<div class="s-other-category__price">от 7 000 руб.
-									</div><a class="s-other-category__btn btn-js" href="#">узнать подробнее</a>
+									</div><a class="s-other-category__btn btn-js link-modal" href="#modal-call" data-title="Узнать подробнее" data-btn="Узнать подробнее" data-order="Узнать подробнее о  &quot;категория «а»&quot;">узнать подробнее</a>
 								</div>
 							</div>
 						</div>
@@ -356,7 +377,7 @@
 								</div>
 								<div class="s-other-category__foot">
 									<div class="s-other-category__price">от 10 000 руб.
-									</div><a class="s-other-category__btn btn-js" href="#">узнать подробнее</a>
+									</div><a class="s-other-category__btn btn-js link-modal" href="#modal-call" data-title="Узнать подробнее" data-btn="Узнать подробнее" data-order="Узнать подробнее о  &quot;категория «c»&quot;">узнать подробнее</a>
 								</div>
 							</div>
 						</div>
@@ -372,7 +393,7 @@
 								</div>
 								<div class="s-other-category__foot">
 									<div class="s-other-category__price">от 10 000 руб.
-									</div><a class="s-other-category__btn btn-js" href="#">узнать подробнее</a>
+									</div><a class="s-other-category__btn btn-js link-modal" href="#modal-call" data-title="Узнать подробнее" data-btn="Узнать подробнее" data-order="Узнать подробнее о  &quot;категория «d»&quot;">узнать подробнее</a>
 								</div>
 							</div>
 						</div>
@@ -388,7 +409,7 @@
 								</div>
 								<div class="s-other-category__foot">
 									<div class="s-other-category__price">от 10 000 руб.
-									</div><a class="s-other-category__btn btn-js" href="#">узнать подробнее</a>
+									</div><a class="s-other-category__btn btn-js link-modal" href="#modal-call" data-title="Узнать подробнее" data-btn="Узнать подробнее" data-order="Узнать подробнее о  &quot;категория «e»&quot;">узнать подробнее</a>
 								</div>
 							</div>
 						</div>
@@ -454,22 +475,64 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap" href="#"> <img class="lazy" src="#" data-src="img/@2x/stock-1.jpg" alt=""/></a>
+						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img class="lazy" src="#" data-src="img/stock-1.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 1</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
 						<!-- /+e.col.col-lg-4.col-md-6-->
-						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap" href="#"> <img class="lazy" src="#" data-src="img/@2x/stock-2.jpg" alt=""/></a>
+						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img class="lazy" src="#" data-src="img/stock-2.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 2</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
 						<!-- /+e.col.col-lg-4.col-md-6-->
-						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap" href="#"> <img class="lazy" src="#" data-src="img/@2x/stock-3.jpg" alt=""/></a>
+						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img class="lazy" src="#" data-src="img/stock-3.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 3</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
 						<!-- /+e.col.col-lg-4.col-md-6-->
-						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap" href="#"> <img class="lazy" src="#" data-src="img/@2x/stock-4.jpg" alt=""/></a>
+						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img class="lazy" src="#" data-src="img/stock-4.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 4</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
 						<!-- /+e.col.col-lg-4.col-md-6-->
-						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap" href="#"> <img class="lazy" src="#" data-src="img/@2x/stock-5.jpg" alt=""/></a>
+						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img class="lazy" src="#" data-src="img/stock-5.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 5</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
 						<!-- /+e.col.col-lg-4.col-md-6-->
-						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap" href="#"> <img class="lazy" src="#" data-src="img/@2x/stock-6.jpg" alt=""/></a>
+						<div class="s-stocks__col col-lg-4 col-md-6"><a class="s-stocks__img-wrap link-modal link-modal-stock-js" href="#modal-stock"><img class="lazy" src="#" data-src="img/stock-6.jpg" alt=""/></a>
+							<div class="d-none js-block">
+								<div class="title"> конкурс: оригинальные airpods 6</div>
+								<p>Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!</p>
+								<p>Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.</p>
+								<p>Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.</p>
+								<p>Чтобы воспользоваться акцией:<br/>1. Добавь товары в&nbsp;корзину.<br/>2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.</p>
+							</div>
 						</div>
 						<!-- /+e.col.col-lg-4.col-md-6-->
 					</div>
@@ -484,7 +547,7 @@
 						<div class="section-title__text">Проводим обучение в&nbsp;автозаводском, центральном и&nbsp;шлюзовом районах
 						</div>
 					</div>
-					<div class="s-contact__block"><a class="s-contact__tel" href="tel:+7(927)268-36-77">+7 (927) 268-36-77</a><a class="s-contact__btn" href="#">получить консультацию</a><a class="s-contact__soc" href="#"><span class="s-contact__icon-wrap">
+					<div class="s-contact__block"><a class="s-contact__tel" href="tel:+7(927)268-36-77">+7 (927) 268-36-77</a><a class="s-contact__btn link-modal" href="#modal-call" data-title="Получить консультацию" data-btn="Получить консультацию" data-order="Получить консультацию "> получить консультацию</a><a class="s-contact__soc" href="#"><span class="s-contact__icon-wrap">
 						<svg class="icon icon-vk ">
 							<use xlink:href="img/svg/sprite.svg#vk"></use>
 						</svg></span>группа вконтакте</a>
@@ -518,21 +581,32 @@
 			<!-- end s-contact-->
 		</div>
 		<div class="d-none">
+			<div class="modal-win modal-win--stock modal-form" id="modal-stock">
+				<div class="modal-content"></div><a class="modal-win__btn link-modal" href="#modal-call" data-title="Принять участие в акции" data-btn="Принять участие в акции" data-order=""> Принять участие в акции</a>
+			</div>
+			<!-- #modal-stock-->
 			<div class="form-wrap modal-win modal-form" id="modal-call">
 				<form>
+					<input class="order" type="hidden" name="order"/>
+					<input class="utm_source" type="hidden" name="utm_source"/>
+					<input class="utm_term" type="hidden" name="utm_term"/>
+					<input class="utm_medium" type="hidden" name="utm_medium"/>
+					<input class="utm_campaign" type="hidden" name="utm_campaign"/>
 					<div class="text-center">
-						<div class="form-wrap__title h3 ttu">Обратный звонок
+						<div class="form-wrap__title form-wrap__title--js">
 						</div>
-						<p>Заполните заявку и&nbsp;мы&nbsp;с&nbsp;Вами свяжемся в&nbsp;течении 15&nbsp;минут</p>
+						<p>Заполните форму, мы&nbsp;свяжемся с&nbsp;Вами сразу как получим вашу заявку.</p>
 					</div>
-					<div class="form-wrap__input-wrap form-group"><input class="form-wrap__input form-control" type="text" placeholder="Ваше Имя" name="text" required="required"/> 
+					<div class="form-wrap__input-wrap form-group"><input class="form-wrap__input form-control" type="text" placeholder="Введите имя" name="text" required="required"/> 
 					</div>
 					<!-- +e.input-wrap-->
-					<div class="form-wrap__input-wrap form-group"><input class="form-wrap__input form-control" type="tel" placeholder="Ваш телефон" name="tel" required="required"/>
+					<div class="form-wrap__input-wrap form-group"><input class="form-wrap__input form-control" type="tel" placeholder="+_(___)-___-__-__" name="tel" required="required"/>
 					</div>
-					<!-- +e.input-wrap--><input class="form-wrap__btn" type="submit" value="Рассчитать"/>
+					<!-- +e.input-wrap-->
+					<button class="form-wrap__btn" type="submit"> 
+					</button>
 					<div class="form-wrap__polite">
-						<label class="custom-input"><input class="custom-input__input" type="checkbox" name="checkbox" checked="checked"/><span class="custom-input__lab"></span><small class="custom-input__text text-secondary">Согласен на обработку и хранение моих персональных данных в соответствии с условиями</small>
+						<label class="custom-input"><input class="custom-input__input" type="checkbox" name="checkbox" checked="checked"/><span class="custom-input__lab"></span><small class="custom-input__text text-secondary">Я&nbsp;согласен с&nbsp;<a href="#">условиями  </a>обработки персональных данных.</small>
 						</label>
 					</div>
 				</form>
@@ -547,10 +621,11 @@
 		<!-- полифил для object-fit-->
 		<script src="libs/object-fit-images/ofi.min.js"></script>
 		<!-- modal libs-->
-		<script src="libs/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
+		<script src="libs/@fancyapps/fancybox/jquery.fancybox.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 		<!-- modal libs-->
 		<!-- slider libs-->
-		<script src="libs/slick-slider/slick/slick.min.js"></script>
+		<script src="libs/slick-carousel/slick/slick.min.js"></script>
 		<!-- /slider libs-->
 		<!-- for svg libs-->
 		<script src="libs/svg4everybody/svg4everybody.min.js"></script>

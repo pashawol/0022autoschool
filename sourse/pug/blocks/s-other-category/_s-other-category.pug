@@ -17,7 +17,7 @@ mixin s-other-category()
 									img.res-i(src="#" data-lazy=`img/@2x/category-${i}.png`, alt="")
 							+e.foot
 								+e.price=pr
-								+e.btn.btn-js(href="#") узнать подробнее
+								+e.btn.btn-js.link-modal(href="#modal-call" data-title=`Узнать подробнее` data-btn="Узнать подробнее" data-order=`Узнать подробнее о  "${t}"`) узнать подробнее
 					// /+e.slide
 				+item("1",'категория «а»','Мотоцикл','от 7 000 руб.')
 				+item("2",'категория «c»','Грузовик','от 10 000 руб.')

@@ -95,7 +95,7 @@
   background-position: center center;
   background-image: url($img);
 }
-@mixin mt($s: .36){
+@mixin mt($s: .3){
   transition: all #{$s}s ;}
 @mixin c-white{
   color: #fff;}

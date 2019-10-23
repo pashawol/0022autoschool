@@ -8,8 +8,7 @@
 @include font-face ("PF Din Text Cond Pro", "../fonts/PFDinTextCondPro-Bold", 700, $file-formats: woff2);
 
 .asph{
-  font-family: ASPHALTICGRAINRUSBYLYAJKA , -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  // font-family: "PF Din Text Cond Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "PF Din Text Cond Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
 font-style: italic;
 text-transform: uppercase;

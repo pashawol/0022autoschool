@@ -89,7 +89,7 @@
 			opacity: 0;
 			&.show{
 
-				animation: car-blick  steps(100,end)  infinite  1s;
+				animation: car-blick  steps(3,end)  3  .5s;
 			}
 		}
 	}

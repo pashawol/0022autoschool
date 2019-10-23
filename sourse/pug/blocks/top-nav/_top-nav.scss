@@ -27,12 +27,13 @@
 			padding: rem(20) 0 rem(16);
 			text-decoration: none !important;
 			&:hover{
-				color: $primary;
+				opacity: 0.7;
 
 			}
 			&.active{
 				color: $primary;
 				border-color: $primary;
+				opacity: 1 !important;
 			}
 		}
 		li{
@@ -165,7 +166,7 @@ $h: 3px;
 	left: 0;
 	// right: 0;
 	transform: translate(-100%, 0);
-	@include mt(.6);
+	@include mt(.1);
 	will-change: transform;
 
 	&__inner {

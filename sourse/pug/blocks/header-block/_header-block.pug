@@ -30,6 +30,20 @@ mixin header-block()
 			+e.slider.two-slide-js
 				- for (var x = 1; x <= 3; x++)
 					+e.slide
-						+e.img-wrap(href="#") 
-							img(src="#" data-lazy=`img/@2x/stock-slide-${x}.jpg`, alt="")
+						+e.img-wrap.link-modal.link-modal-stock-js(href="#modal-stock")
+							img(src="#" data-lazy=`img/stock-slide-${x}.jpg`, alt="")
+						.d-none.js-block
+							
+							.title=` конкурс: оригинальные airpods ${x}` 
+							p Самая удобная акция на&nbsp;свете: выбирай&nbsp;то, что хочешь сам!
+
+							p Сет Атлантида за&nbsp;459&nbsp;рублей! Филадельфия Лайт, Калифорния с&nbsp;лососем Люкс, Акваланг запеченный унаги, Цезарь с&nbsp;курицей запечённый унаги.
+
+							p Количество товаров по&nbsp;акции неограниченно. По&nbsp;одному промокоду можно заказать сколько угодно позиций&nbsp;&mdash; вместе или по&nbsp;отдельности.
+
+							p Чтобы воспользоваться акцией:
+								br
+								| 1. Добавь товары в&nbsp;корзину.
+								br
+								| 2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.
 	// end header-block

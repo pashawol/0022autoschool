@@ -13,6 +13,7 @@ global.$ = {
 	envDev: false,
 	gp: require('gulp-load-plugins' )(),
 	browserSync: require('browser-sync').create(), 
+	uglifycss: require('gulp-uglifycss'),
 	path: {
 		tasks: require('./gulp/config/tasks.js'),
 	},

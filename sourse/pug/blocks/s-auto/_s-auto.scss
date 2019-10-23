@@ -29,9 +29,8 @@
 	}
 	&__title{
 		@extend .asph;
-		@extend .h4;
+		@include rfs(rem(34));
 		line-height: 1;
-		letter-spacing: rem(3.2px);
 		padding-top: rem(25);
 	}
 		 

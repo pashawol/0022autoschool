@@ -57,7 +57,7 @@ html {
 	>h2 {
 		// font-size: inherit;
 		@extend .asph;
-		letter-spacing: rem(6.1px);
+		// letter-spacing: rem(6.1px);
 		span{
 			display: inline-block;
 		}
@@ -285,7 +285,7 @@ transition: all 0.3s ease-out;
 	svg {
 		width: rem(28 * 1.2);
 		height: rem(20 * 1.2);
-		@include mt;
+		// @include mt;
 	}
 			path{
 				fill: #b7b7b7;
@@ -475,4 +475,19 @@ position: absolute !important;
 .btn-js{
 	overflow: hidden;
 	position: relative;
+
 }
+.btn-primary{
+	box-shadow: none !important;
+	// outline: none !important;
+	&:not(:disabled):not(.disabled):active,
+	&:focus,
+	&:hover{
+		background-color: #ffcc00;
+		border-color: #ffcc00;
+	}
+	&.disabled{
+		pointer-events: none;
+	}
+}
+

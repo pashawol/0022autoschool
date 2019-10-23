@@ -1,15 +1,44 @@
 .modal-win {
 	display: block;
 	position: relative;
+	box-shadow: 0 10px 30px rgba(32, 22, 0, 0.2);
+	border-radius: 15px;
+	max-width: 555px;
 	.modal-content {
 		// max-width: 485px;
 		// padding-right: 40px 15px;
+		p{
+			// font-size: ;
+			@extend .h6;
+			margin-bottom: 1rem;
+		}
 	}
 	.mfp-close {
 		color: $primary;
 		font-size: 40px;
 		font-weight: 100;
 	}   
+	.title{
+		text-align: center;
+		@include rfs(rem(42));
+		@extend .asph;
+		margin-bottom: 1rem;
+		line-height: 1;
+	}
+&__btn{
+	@extend .btn;
+	@extend .btn-primary;
+	@extend .btn-block;
+	margin-left: auto;
+	margin-right: auto;
+	width: rem(313);
+	margin-top: rem(20);
+}
+}
+.modal-win--stock{
+	max-width: rem(751);
+	
+
 }
 
 a {

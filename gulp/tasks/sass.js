@@ -10,10 +10,9 @@ module.exports = function (){
 	.pipe($.gp.autoprefixer({
 
 		grid: true,
-		overrideBrowserslist: ['last 10 versions']
+		overrideBrowserslist: ['last 2 version', 'safari 9', 'ie 11']
 	}))
-	.pipe($.cleanCSS())
-	.pipe($.tabify(2, true))
+	.pipe($.cleanCSS({compatibility: 'ie11'})) 
 	.pipe($.gulp.dest($.public + '/css'))
 	//.on('end', browserSync.stream());
 	.pipe($.browserSync.stream());
