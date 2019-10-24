@@ -1,0 +1,15 @@
+mixin s-licensed()
+	// start s-licensed
+	+b.s-licensed.section#s-licensed&attributes(attributes)
+		.container
+			+e.text Давно выяснено, что при оценке дизайна и&nbsp;композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а&nbsp;также реальное распределение букв и&nbsp;пробелов в&nbsp;абзацах, которое не&nbsp;получается при простой дубликации &laquo;Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..&raquo;
+			+e.row.row
+				mixin license(i)
+					+e.col.col-lg-3.col-sm-6
+						+e.A.img-wrap(href=`img/${i}-f.jpg` data-fancybox=`${i}` data-caption=`${i}`)
+							img.res-i(src=`img/@2x/${i}.jpg` alt='')
+				+license('license1')
+				+license('license2')
+				+license('license3')
+				+license('license4')
+	// end s-licensed

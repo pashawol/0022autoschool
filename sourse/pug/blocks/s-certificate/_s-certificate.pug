@@ -1,0 +1,18 @@
+mixin s-certificate()
+	// start s-certificate
+	+b.SECTION.s-certificate.section#s-certificate&attributes(attributes)
+		.container
+			.row
+				+e.img-col.col-md-6
+					+e.A.img-wrap(href=`img/certificate-f.jpg` data-fancybox=`certificate` data-caption=`certificate`)
+						img.res-i(src='img/@2x/certificate.jpg' alt='')
+				.col-md
+					+e.text-wrap
+						+e.item
+							h2 ЗАГОЛОВОК 1
+							p Давно выяснено, что при оценке дизайна и&nbsp;композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а&nbsp;также реальное распределение букв и&nbsp;пробелов в&nbsp;абзацах, которое не&nbsp;получается при простой дубликации &laquo;Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..&raquo;
+						+e.item
+							h2 ЗАГОЛОВОК 2
+							p Давно выяснено, что при оценке дизайна и&nbsp;композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона.
+						+e.btn(href='#') купить подарочный сертификат
+	// end s-certificate

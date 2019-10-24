@@ -1,0 +1,20 @@
+mixin s-services()
+	// start s-services
+	+b.s-services.section#s-services&attributes(attributes)
+		.container
+			mixin service
+				+e.item
+					.row
+						+e.img-col.col-md-auto
+							+e.img-wrap
+								img.res-i(src='img/@2x/service-i.jpg' alt='')
+						.col-lg-6.col-md-5.col
+							+e.item-title Занятие с инструктором на нашем автомобиле
+							+e.item-text Инструктор приедет за Вами, после чего вы пройдете 2х часовой маршрут по городу.
+							+e.item-price 1 500 руб.
+						+e.btn-col.col-md
+							+e.btn.btn.btn-primary(href='#') отправить заявку
+			+service
+			+service
+			+service
+	// end s-services

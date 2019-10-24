@@ -24,7 +24,7 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 
 	// JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
-	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/2.jpg);"></div>')
+	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/cont.jpg);"></div>')
 	// /добавляет подложку для pixel perfect
 
 
@@ -35,8 +35,19 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 				$(this).addClass('active'); 
 		}; 
 	}); 
-
 	// /закрыть/открыть мобильное меню
+
+
+	// lazy video
+
+	$('.s-reviews iframe').each(function(){
+		if ($(this).data('src')){
+			$(this).attr('src',$(this).data('src'));
+		}
+	});
+
+	// /lazy video
+
 
 	function heightses() {
 

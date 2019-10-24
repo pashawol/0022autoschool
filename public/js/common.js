@@ -26,7 +26,7 @@ function eventHandler() {
 	JSCCommon.inputMask(); // JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
 
-	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/2.jpg);"></div>'); // /добавляет подложку для pixel perfect
+	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/cont.jpg);"></div>'); // /добавляет подложку для pixel perfect
 
 	var url = document.location.href;
 	$.each($(".top-nav a , .menu-mobile__inner li a"), function () {
@@ -36,6 +36,13 @@ function eventHandler() {
 
 		;
 	}); // /закрыть/открыть мобильное меню
+	// lazy video
+
+	$('.s-reviews iframe').each(function () {
+		if ($(this).data('src')) {
+			$(this).attr('src', $(this).data('src'));
+		}
+	}); // /lazy video
 
 	function heightses() {
 		var w = $(window).width(); // $(".main-wrapper").css("margin-bottom", $('footer').height())

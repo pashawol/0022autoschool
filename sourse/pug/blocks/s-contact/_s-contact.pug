@@ -8,13 +8,7 @@ mixin s-contact()
 				+b.section-title.text-center
 					h2 контактная информация
 					+e.text Проводим обучение в&nbsp;автозаводском, центральном и&nbsp;шлюзовом районах
-			+e.block
-				+e.tel(href="tel:+7(927)268-36-77") +7 (927) 268-36-77
-				+e.btn.link-modal(href="#modal-call" data-title=`Получить консультацию` data-btn="Получить консультацию" data-order=`Получить консультацию `)  получить консультацию
-				+e.soc(href="https://vk.com/rosto_t63" target="_blank")
-					+e.icon-wrap
-						+icon('vk')
-					| группа вконтакте
+			+contact-line()
 			+e.text Не&nbsp;откладывайте! Пока вы&nbsp;думаете, другие уже обучаются в&nbsp;нашей автошколе: участвуют в&nbsp;конкурсах, пользуются вебинарной платформой бесплатно и&nbsp;получают водительские права в&nbsp;кротчайшие сроки.
 			+e.car-wrap
 				+pic("footer-car.png")
