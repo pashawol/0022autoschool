@@ -1,0 +1,51 @@
+.s-contacts {
+	padding: rem(30) 0 rem(85);
+
+
+	&__text{
+		max-width: rem(1070);
+		margin-left: auto;
+		margin-right: auto;
+		color: $secondary;
+		line-height: 1.63;
+		text-align: center;
+		margin-bottom: rem(20);
+	}
+
+	.contact-line{
+		margin-bottom: rem(50);
+		border: 1px solid #dadde2;
+		box-shadow: 0 5px 15px rgba(32, 22, 0, 0.2);
+	}
+
+	&__map-wrap{
+		border-radius: rem(15);
+		background-color: #f2f6fa;
+		overflow: hidden;
+	}
+		 
+	@include media-breakpoint-up(xl) {}
+	@include media-breakpoint-up(lg) {}
+	@include media-breakpoint-up(md) {}
+	@include media-breakpoint-up(sm) {}
+	@include media-breakpoint-up(xs) {}
+	
+	//
+	@include media-breakpoint-between(md, xl) { }
+	
+	
+	//
+	@include media-breakpoint-only(xs) {}
+	@include media-breakpoint-only(sm) {}
+	@include media-breakpoint-only(md) {}
+	@include media-breakpoint-only(lg) {}
+	@include media-breakpoint-only(xl) {}
+	
+	//
+	@include media-breakpoint-down(xl) {}
+	@include media-breakpoint-down(lg) {}
+	@include media-breakpoint-down(md) {}
+	@include media-breakpoint-down(sm) {}
+	@include media-breakpoint-down(xs) {} 
+
+}

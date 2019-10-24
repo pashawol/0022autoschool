@@ -1,0 +1,5 @@
+JSCCommons-certificate();
+	s-certificate() {
+
+	}
+	

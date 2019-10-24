@@ -89,6 +89,17 @@ mixin arrow()
 		
  
 
+
+
+mixin contact-line()
+	+b.contact-line
+		+e.tel(href="tel:+7(927)268-36-77") +7 (927) 268-36-77
+		+e.btn.link-modal(href="#modal-call" data-title=`Получить консультацию` data-btn="Получить консультацию" data-order=`Получить консультацию `)  получить консультацию
+		+e.soc(href="https://vk.com/rosto_t63" target="_blank")
+			+e.icon-wrap
+				+icon('vk')
+			| группа вконтакте
+
 //- scial buttons
 mixin soc()
 	+b.soc

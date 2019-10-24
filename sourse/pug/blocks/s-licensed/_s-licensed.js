@@ -1,0 +1,5 @@
+JSCCommons-licensed();
+	s-licensed() {
+
+	}
+	
