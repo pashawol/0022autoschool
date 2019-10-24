@@ -1,11 +1,13 @@
-mixin s-other-category()
+mixin s-other-category(t)
 	// start s-other-category
 	+b.SECTION.s-other-category.section#s-other-category&attributes(attributes)
 		.container
-			+b.section-title.text-center
-				h2 другие категории
-				+e.text Водительские права&nbsp;&mdash; это не&nbsp;только удобство и&nbsp;возможность управлять личным автомобилем, но&nbsp;и&nbsp;возможность заработка
-				
+			if t
+				+b.section-title.text-center
+					h2 другие категории
+					+e.text Водительские права&nbsp;&mdash; это не&nbsp;только удобство и&nbsp;возможность управлять личным автомобилем, но&nbsp;и&nbsp;возможность заработка
+			else
+				block
 			+e.slider--js
 				mixin item(i,t,p,pr)
 					+e.slide

@@ -1,11 +1,14 @@
-mixin s-tariffs()
+mixin s-tariffs(t)
 	// start s-tariffs
 	+b.SECTION.s-tariffs.section#s-tariffs&attributes(attributes)
 		.container
-			+b.section-title.text-center
-				h2 выбери удобный тариф 
-					| 
-					span.text-primary и поехали!
+			if t
+				+b.section-title.text-center
+					h2 выбери удобный тариф 
+						| 
+						span.text-primary и поехали!
+			else
+				block
 			.row
 				mixin item(i, t, time, pr, timefor="набор до 28 октября 2019", place="осталось 5 мест из 20")
 					+e.col.col-lg-4

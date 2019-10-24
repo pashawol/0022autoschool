@@ -37,6 +37,15 @@ mixin modal()
 			+e.btn.link-modal(href="#modal-call" data-title="Принять участие в акции" data-btn="Принять участие в акции" data-order="")  Принять участие в акции
 		// #modal-stock
 		
+		+b.modal-win--stock(id="modal-policy" class="   modal-form" )
+			.modal-content
+				h2.text-center.strong.pf Политика
+				p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, possimus. Fugit commodi, quod odit deserunt sint aperiam reiciendis voluptates dolores omnis temporibus repellendus nostrum nihil maiores quis iste earum porro aliquid sapiente. Neque praesentium nobis dolor dignissimos? Suscipit iste consequatur numquam obcaecati. Nam, minima iste. Ratione culpa dolorum incidunt aliquam? Facilis magnam perferendis, suscipit maiores consequatur porro dignissimos iure assumenda rerum odit recusandae voluptas laborum, ad nam perspiciatis quos nisi.
+				p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, possimus. Fugit commodi, quod odit deserunt sint aperiam reiciendis voluptates dolores omnis temporibus repellendus nostrum nihil maiores quis iste earum porro aliquid sapiente. Neque praesentium nobis dolor dignissimos? Suscipit iste consequatur numquam obcaecati. Nam, minima iste. Ratione culpa dolorum incidunt aliquam? Facilis magnam perferendis, suscipit maiores consequatur porro dignissimos iure assumenda rerum odit recusandae voluptas laborum, ad nam perspiciatis quos nisi.
+				p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, possimus. Fugit commodi, quod odit deserunt sint aperiam reiciendis voluptates dolores omnis temporibus repellendus nostrum nihil maiores quis iste earum porro aliquid sapiente. Neque praesentium nobis dolor dignissimos? Suscipit iste consequatur numquam obcaecati. Nam, minima iste. Ratione culpa dolorum incidunt aliquam? Facilis magnam perferendis, suscipit maiores consequatur porro dignissimos iure assumenda rerum odit recusandae voluptas laborum, ad nam perspiciatis quos nisi.
+				p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, possimus. Fugit commodi, quod odit deserunt sint aperiam reiciendis voluptates dolores omnis temporibus repellendus nostrum nihil maiores quis iste earum porro aliquid sapiente. Neque praesentium nobis dolor dignissimos? Suscipit iste consequatur numquam obcaecati. Nam, minima iste. Ratione culpa dolorum incidunt aliquam? Facilis magnam perferendis, suscipit maiores consequatur porro dignissimos iure assumenda rerum odit recusandae voluptas laborum, ad nam perspiciatis quos nisi.
+		// #modal-stock
+		
 		+form-wrap()(id="modal-call" class="  modal-win modal-form" )
 			.text-center
 				+e.title--js
@@ -48,5 +57,12 @@ mixin modal()
 			+e.BUTTON.btn(type="submit") 
 			+polite()
 		// #modal-call
-
+	
+		
+		+b.form-wrap(id="modal-thanks" class="  modal-win modal-form" )
+			.text-center
+				+e.title Спасибо
+				p Мы&nbsp;свяжемся с&nbsp;Вами в&nbsp;ближайшее время для уточнения деталей 
+		// #modal-thanks
+	
 	// modal

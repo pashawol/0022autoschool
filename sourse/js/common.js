@@ -24,7 +24,7 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 
 	// JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
-	// $(".main-wrapper").after('<div class="screen" style="background-image: url(screen/1.jpg);"></div>')
+	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/2.jpg);"></div>')
 	// /добавляет подложку для pixel perfect
 
 
@@ -49,8 +49,8 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 
 		const topH =$('header').innerHeight();
 		const topL = $('.top-line  ').innerHeight();
-		$('.header-block').css('marginTop', topH); 
-		JSCCommon.paddRight('.top-nav, .top-line, body.fixed');
+		$('.main-wrapper').css('paddingTop', topH); 
+		JSCCommon.paddRight('.top-nav, .top-line ');
 		setTimeout(() => {
 			menufixed();
 			
@@ -120,11 +120,31 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 		prevArrow: arrl2,
 		nextArrow: arrr2,
 		// autoplay: true,
-		autoplaySpeed: 6000,
-		lazyLoad: 'ondemand',
+		swipeToSlide: true,
+		autoplaySpeed: 3000,
+		lazyLoad: 'progressive',
+		draggable:true,
+		draggable: false
 	};
- 
+	// $(".slick-slider").find("a").click(function() {
+	// 	if (isSliding) {
+	// 	}
+	// });
 	
+	$('.slick-slider').on('beforeChange ', function(event, slick, direction){
+		console.log(1)
+		$(slick).find('a').addClass("notclicked")
+			// left
+		});
+		
+	$('.slick-slider').on('afterChange ', function(event, slick, direction){
+		console.log(1)
+		$(slick).find('a').removeClass("notclicked")
+			// left
+		});
+
+ 
+
 	$('.s-other-category__slider--js').slick({
 		...defaultSlide,
 		
@@ -158,7 +178,7 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 	 ],
 		
 	});
- 
+
 var gets = (function() {
 	var a = window.location.search;
 	var b = new Object();
@@ -271,6 +291,7 @@ const JSCCommon = {
 			arrows: false,
 			infobar: false,
 			touch: false,
+			autoFocus:false,
 			i18n: {
 				en: {
 					CLOSE: "Закрыть",
@@ -285,7 +306,7 @@ const JSCCommon = {
 					// ZOOM: "Zoom"
 				},
 			},
-			// type : 'inline',
+			type : 'inline',
 		});
 		$(".modal-close-js").click(function () {
 			$.fancybox.close();
@@ -319,8 +340,9 @@ const JSCCommon = {
 			btnToggle.toggleClass("on");
 			// $("body").toggleClass("fixed");
 			menu.toggleClass("active");
+			$("body").toggleClass("compensate-for-scrollbar");
 			$("body, html").toggleClass("fixed");
-			JSCCommon.paddRight(' body.fixed');
+			// JSCCommon.paddRight(' body');
 			return false;
 		});
 		// $('.menu-mobile--js ul li a').on('click', function () {

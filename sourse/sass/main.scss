@@ -51,15 +51,32 @@ $theme-colors: map-remove($theme-colors, "info",   "dark",'warning');
 // @import "./node_modules/bootstrap/scss/spinners";
 @import "./node_modules/bootstrap/scss/utilities";
 
-// @import "./node_modules/bootstrap/scss/breadcrumb";
-// .breadcrumb{
-//   .active{
-//     a{
-//       color: $breadcrumb-active-color;
-//       pointer-events: none;
-//     }
-//   }
-// }
+@import "./node_modules/bootstrap/scss/breadcrumb";
+.breadcrumb{
+  a{
+    color: $secondary;
+  }
+  .active{
+    a{
+      color: $breadcrumb-active-color;
+      pointer-events: none;
+    }
+  }
+}
+.breadcrumb-item+.breadcrumb-item::before { 
+  padding-bottom: inherit;
+  display: inline-block;
+  padding-right: .5rem;
+  color: #ffb000;
+  width: rem(8 * 1.4);
+  height: rem(12 * 1.4);
+  background-image: url(../img/svg/arrow-point-to-right.svg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-right: rem(9);
+  top: rem(1);
+  position: relative;
+}
 // @import "./node_modules/bootstrap/scss/pagination"; 
 //   .pagination-wrapper ul{
 //     @extend .pagination;

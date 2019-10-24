@@ -14,12 +14,12 @@
 	&__img-wrap{
 		display: block; 
 		border-radius: 15px;
-		background-color: #3b3b3b;
+		// background-color: #3b3b3b;
 		overflow: hidden;
 		position: relative;
 		@include block(556,320)
 		img{
-			object-fit: cover;
+			// object-fit: cover;
 			width: 100%;
 			height: 100%;
 			position: absolute;

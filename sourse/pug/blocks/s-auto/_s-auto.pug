@@ -1,11 +1,13 @@
-mixin s-auto()
+mixin s-auto(t)
 	// start s-auto
 	+b.SECTION.s-auto.section#s-auto&attributes(attributes)
 		.container
-			+b.section-title.text-center
-				h2 наш автопарк
-				+e.text В&nbsp;нашем автопарке полностью исправные и&nbsp;комфортные автомобили
-				
+			if t
+				+b.section-title.text-center
+					h2 наш автопарк
+					+e.text В&nbsp;нашем автопарке полностью исправные и&nbsp;комфортные автомобили
+			else
+				block
 			+e.slider.two-slide-js
 				mixin slide(x,t)
 					+e.slide

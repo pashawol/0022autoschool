@@ -4,7 +4,12 @@
 	box-shadow: 0 10px 30px rgba(32, 22, 0, 0.2);
 	border-radius: 15px;
 	max-width: 555px;
+	@include media-breakpoint-up(md) {
+		padding: 44px;
+	}
+	padding: 44px 15px;
 	.modal-content {
+		border: none;
 		// max-width: 485px;
 		// padding-right: 40px 15px;
 		p{

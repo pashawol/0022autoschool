@@ -2,13 +2,16 @@ mixin s-contact()
 	// start s-contact
 	+b.FOOTER.s-contact.section(data-bg="img/@2x/header-bg.jpg")#s-contact&attributes(attributes)
 		.container
-			+b.section-title.text-center
-				h2 контактная информация
-				+e.text Проводим обучение в&nbsp;автозаводском, центральном и&nbsp;шлюзовом районах
+			if block
+				block
+			else
+				+b.section-title.text-center
+					h2 контактная информация
+					+e.text Проводим обучение в&nbsp;автозаводском, центральном и&nbsp;шлюзовом районах
 			+e.block
 				+e.tel(href="tel:+7(927)268-36-77") +7 (927) 268-36-77
 				+e.btn.link-modal(href="#modal-call" data-title=`Получить консультацию` data-btn="Получить консультацию" data-order=`Получить консультацию `)  получить консультацию
-				+e.soc(href="#")
+				+e.soc(href="https://vk.com/rosto_t63" target="_blank")
 					+e.icon-wrap
 						+icon('vk')
 					| группа вконтакте
@@ -18,9 +21,9 @@ mixin s-contact()
 				+pic("footer-car-active.png")(class="picture-active")
 			+e.foot.row
 				.col-lg-auto
-					a(href="#") политика конфиденциальности
+					a.link-modal(href="#modal-policy" ) политика конфиденциальности
 				.col-lg-auto
-					a(href="#") Разработка сайта – 
+					a(href="https://vk.com/ishmetovm" target="_blank") Разработка сайта – 
 						span Ishmetov
 			//- .row
 		

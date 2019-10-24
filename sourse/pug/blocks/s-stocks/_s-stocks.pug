@@ -1,11 +1,13 @@
-mixin s-stocks()
+mixin s-stocks(t)
 	// start s-stocks
 	+b.SECTION.s-stocks.section#s-stocks&attributes(attributes)
 		.container
-			+b.section-title.text-center
-				h2 наши акции
-				+e.text акции и&nbsp;конкурсы распространяются на&nbsp;учеников нашей автошколы
-				
+			if t
+				+b.section-title.text-center
+					h2 наши акции
+					+e.text акции и&nbsp;конкурсы распространяются на&nbsp;учеников нашей автошколы
+			else
+				block
 			.row
 				- for (var x = 1; x <= 6; x++)
 					+e.col.col-lg-4.col-md-6

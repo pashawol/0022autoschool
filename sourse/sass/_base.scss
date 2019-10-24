@@ -17,6 +17,11 @@ html {
 }  
 body,
 html {
+	&focus{
+		.screen{
+			opacity: 0;
+		}
+	}
 	@include media-breakpoint-up(xl) {
 
 		
@@ -76,7 +81,7 @@ body {
 		width: 100vw;
 		overflow: hidden; position: absolute; width: 100%; left: 0; top: 0; z-index: 999; 
 		&::before {
-			z-index: 999; 
+			z-index:  1071; 
 			opacity: 0.76;
 		}
 	}
@@ -491,3 +496,33 @@ position: absolute !important;
 	}
 }
 
+
+.notclicked{
+	pointer-events: none;
+}
+
+
+.page-title{
+	padding-top: rem(10);
+	text-align: center;
+	.breadcrumb{
+		justify-content: center;
+	}
+	h1{
+		// @extend .h2;
+		@include rfs(rem(58));
+		// @import url( rfs(rem(52)));
+		@extend .pf;
+		text-transform: uppercase;		
+		font-style: italic;
+		margin-bottom: rem(3);
+		font-weight: bold;
+	}
+	&__text{
+		@include rfs(rem(24));
+		@extend .pf;
+		font-weight: 500;
+		color: $primary;
+		text-transform: uppercase;
+	}
+}

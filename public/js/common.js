@@ -25,8 +25,8 @@ function eventHandler() {
 	JSCCommon.mobileMenu();
 	JSCCommon.inputMask(); // JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
-	// $(".main-wrapper").after('<div class="screen" style="background-image: url(screen/1.jpg);"></div>')
-	// /добавляет подложку для pixel perfect
+
+	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/2.jpg);"></div>'); // /добавляет подложку для pixel perfect
 
 	var url = document.location.href;
 	$.each($(".top-nav a , .menu-mobile__inner li a"), function () {
@@ -45,8 +45,8 @@ function eventHandler() {
 
 		var topH = $('header').innerHeight();
 		var topL = $('.top-line  ').innerHeight();
-		$('.header-block').css('marginTop', topH);
-		JSCCommon.paddRight('.top-nav, .top-line, body.fixed');
+		$('.main-wrapper').css('paddingTop', topH);
+		JSCCommon.paddRight('.top-nav, .top-line ');
 		setTimeout(function () {
 			menufixed();
 		}, 300);
@@ -94,7 +94,7 @@ function eventHandler() {
 	var arrl2 = ' <div class="r">' + icon,
 			arrr2 = ' <div class="l">' + icon; // // карусель
 
-	var defaultSlide = {
+	var defaultSlide = _defineProperty({
 		speed: 200,
 		infinite: true,
 		arrows: true,
@@ -102,9 +102,24 @@ function eventHandler() {
 		prevArrow: arrl2,
 		nextArrow: arrr2,
 		// autoplay: true,
-		autoplaySpeed: 6000,
-		lazyLoad: 'ondemand'
-	};
+		swipeToSlide: true,
+		autoplaySpeed: 3000,
+		lazyLoad: 'progressive',
+		draggable: true
+	}, "draggable", false); // $(".slick-slider").find("a").click(function() {
+	// 	if (isSliding) {
+	// 	}
+	// });
+
+
+	$('.slick-slider').on('beforeChange ', function (event, slick, direction) {
+		console.log(1);
+		$(slick).find('a').addClass("notclicked"); // left
+	});
+	$('.slick-slider').on('afterChange ', function (event, slick, direction) {
+		console.log(1);
+		$(slick).find('a').removeClass("notclicked"); // left
+	});
 	$('.s-other-category__slider--js').slick(_objectSpread({}, defaultSlide, {
 		slidesToShow: 1,
 		responsive: [{
@@ -243,6 +258,7 @@ var JSCCommon = {
 			arrows: false,
 			infobar: false,
 			touch: false,
+			autoFocus: false,
 			i18n: {
 				en: {
 					CLOSE: "Закрыть",
@@ -256,8 +272,8 @@ var JSCCommon = {
 					// ZOOM: "Zoom"
 
 				}
-			} // type : 'inline',
-
+			},
+			type: 'inline'
 		});
 		$(".modal-close-js").click(function () {
 			$.fancybox.close();
@@ -286,8 +302,9 @@ var JSCCommon = {
 			btnToggle.toggleClass("on"); // $("body").toggleClass("fixed");
 
 			menu.toggleClass("active");
-			$("body, html").toggleClass("fixed");
-			JSCCommon.paddRight(' body.fixed');
+			$("body").toggleClass("compensate-for-scrollbar");
+			$("body, html").toggleClass("fixed"); // JSCCommon.paddRight(' body');
+
 			return false;
 		}); // $('.menu-mobile--js ul li a').on('click', function () {
 		// 	$(".menu-mobile--js .toggle-mnu").click();
