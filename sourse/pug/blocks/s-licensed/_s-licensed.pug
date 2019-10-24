@@ -6,7 +6,7 @@ mixin s-licensed()
 			+e.row.row
 				mixin license(i)
 					+e.col.col-lg-3.col-sm-6
-						+e.A.img-wrap(href=`img/${i}-f.jpg` data-fancybox=`${i}` data-caption=`${i}`)
+						+e.A.img-wrap(href=`img/${i}-f.jpg` data-fancybox=`${i}`)
 							img.res-i(src=`img/@2x/${i}.jpg` alt='')
 				+license('license1')
 				+license('license2')

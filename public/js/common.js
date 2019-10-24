@@ -27,16 +27,30 @@ function eventHandler() {
 	// добавляет подложку для pixel perfect
 
 	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/cont.jpg);"></div>'); // /добавляет подложку для pixel perfect
+	// const url = document.location.href;
+	// var cur_url = url.split();
+	// console.log(cur_url)
+	// $.each($(".top-nav a , .menu-mobile__inner li a"), function () { 
+	// 		if (this.href == cur_url  ) { 
+	// 			$(this).addClass('active'); 
+	// 	}; 
+	// }); 
 
-	var url = document.location.href;
-	$.each($(".top-nav a , .menu-mobile__inner li a"), function () {
-		if (this.href == url) {
+	var location = window.location.href;
+	var cur_url = location.split('/').pop().split('#').shift();
+
+	if (cur_url == '') {
+		cur_url = '/';
+	} // console.log(cur_url)
+
+
+	$('.top-nav a , .menu-mobile__inner li a').each(function () {
+		var link = $(this).attr('href');
+
+		if (cur_url == link) {
 			$(this).addClass('active');
 		}
-
-		;
-	}); // /закрыть/открыть мобильное меню
-	// lazy video
+	}); // lazy video
 
 	$('.s-reviews iframe').each(function () {
 		if ($(this).data('src')) {
@@ -119,14 +133,6 @@ function eventHandler() {
 	// });
 
 
-	$('.slick-slider').on('beforeChange ', function (event, slick, direction) {
-		console.log(1);
-		$(slick).find('a').addClass("notclicked"); // left
-	});
-	$('.slick-slider').on('afterChange ', function (event, slick, direction) {
-		console.log(1);
-		$(slick).find('a').removeClass("notclicked"); // left
-	});
 	$('.s-other-category__slider--js').slick(_objectSpread({}, defaultSlide, {
 		slidesToShow: 1,
 		responsive: [{
@@ -166,26 +172,23 @@ function eventHandler() {
 	}(); // form
 
 
-	$("form").submit(function () {
-		//Change
+	$("form").submit(function (e) {
+		e.preventDefault();
 		var th = $(this);
+		var data = th.serialize();
 		th.find('.utm_source').val(decodeURIComponent(gets['utm_source'] || ''));
 		th.find('.utm_term').val(decodeURIComponent(gets['utm_term'] || ''));
 		th.find('.utm_medium').val(decodeURIComponent(gets['utm_medium'] || ''));
 		th.find('.utm_campaign').val(decodeURIComponent(gets['utm_campaign'] || ''));
 		$.ajax({
-			type: "POST",
 			url: 'action.php',
-			//Change
-			data: th.serialize()
-		}).success(function () {
-			// $.magnificPopup.close();
-			$.magnificPopup.open({
-				items: {
-					src: '#thanks',
-					// can be a HTML string, jQuery object, or CSS selector
-					type: 'inline'
-				}
+			type: 'POST',
+			data: data
+		}).done(function (data) {
+			$.fancybox.close();
+			$.fancybox.open({
+				src: '#modal-thanks',
+				type: 'inline'
 			}); // window.location.replace("/thanks.html");
 
 			setTimeout(function () {
@@ -194,8 +197,7 @@ function eventHandler() {
 				// ym(53383120, 'reachGoal', 'zakaz');
 				// yaCounter55828534.reachGoal('zakaz');
 			}, 4000);
-		});
-		return false;
+		}).fail(function () {});
 	}); // /form
 
 	$('.form-wrap__polite input').change(function () {
@@ -266,6 +268,7 @@ var JSCCommon = {
 			infobar: false,
 			touch: false,
 			autoFocus: false,
+			closeExisting: true,
 			i18n: {
 				en: {
 					CLOSE: "Закрыть",
@@ -299,6 +302,10 @@ var JSCCommon = {
 
 			if ($(this).hasClass("modal-win__btn")) {
 				$(modal).find(".order").val("Акция: " + th.parent().find(".title").text());
+			}
+
+			if ($(this).hasClass("s-services__btn")) {
+				$(modal).find(".order").val("Заявка на: " + th.parents(".s-services__item").find(".s-services__item-title").text());
 			}
 		});
 	},

@@ -74,7 +74,7 @@ $theme-colors: map-remove($theme-colors, "info",   "dark",'warning');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   margin-right: rem(9);
-  top: rem(1);
+  top: rem(3);
   position: relative;
 }
 // @import "./node_modules/bootstrap/scss/pagination"; 

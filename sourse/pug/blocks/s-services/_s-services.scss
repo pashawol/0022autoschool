@@ -57,6 +57,8 @@
 	}
 	&__btn{
 		@extend .btn-sm;
+		@extend .btn;
+		@extend .btn-primary;
 		width: rem(200);
 	}
 		 

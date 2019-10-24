@@ -4,7 +4,7 @@ mixin s-certificate()
 		.container
 			.row
 				+e.img-col.col-md-6
-					+e.A.img-wrap(href=`img/certificate-f.jpg` data-fancybox=`certificate` data-caption=`certificate`)
+					+e.A.img-wrap(href=`img/certificate-f.jpg` data-fancybox=`certificate`)
 						img.res-i(src='img/@2x/certificate.jpg' alt='')
 				.col-md
 					+e.text-wrap
@@ -14,5 +14,5 @@ mixin s-certificate()
 						+e.item
 							h2 ЗАГОЛОВОК 2
 							p Давно выяснено, что при оценке дизайна и&nbsp;композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона.
-						+e.btn(href='#') купить подарочный сертификат
+						+e.btn.btn-js.link-modal(href="#modal-call" data-title="Купить подарочный сертификат" data-btn="Купить" data-order="Купить подарочный сертификат")  Купить подарочный сертификат
 	// end s-certificate

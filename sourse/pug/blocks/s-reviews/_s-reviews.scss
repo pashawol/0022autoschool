@@ -59,7 +59,9 @@
 		}
 	}
 	&__video-wrap{
+		background-color: $body-color;
 		@include block(555,404);
+		min-height: 100%;
 	}
 	iframe{
 		position: absolute;
