@@ -12,12 +12,12 @@ mixin s-auto(t)
 				mixin slide(x,t)
 					+e.slide
 						+e.img-wrap() 
-							img(src="#" data-lazy=`img/@2x/auto-${x}.jpg`, alt="")
+							img(src="#" data-lazy=`${x}.jpg`, alt="")
 						+e.title= t
 					// +e.slide
-				+slide("1",'lada vesta')
-				+slide("2",'renault logan')
-				+slide("3",'lada kalina')
-				+slide("4",'lada granta')
-				+slide("5",'lada kalina')
+				+slide("img/@2x/auto-1",'lada vesta')
+				+slide("img/@2x/auto-2",'renault logan')
+				+slide("img/@2x/auto-3",'lada kalina')
+				+slide("img/@2x/auto-4",'lada granta')
+				+slide("img/@2x/auto-5",'lada kalina')
 	// end s-auto

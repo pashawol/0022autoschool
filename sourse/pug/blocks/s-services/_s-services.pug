@@ -2,19 +2,20 @@ mixin s-services()
 	// start s-services
 	+b.s-services.section#s-services&attributes(attributes)
 		.container
-			mixin service
+			mixin service(i='img/@2x/service-i.jpg', t, p)
 				+e.item
 					.row
 						+e.img-col.col-md-auto
 							+e.img-wrap
-								img.res-i(src='img/@2x/service-i.jpg' alt='')
+								img.res-i(src= i alt='')
 						.col-lg-6.col-md-5.col
-							+e.item-title Занятие с инструктором на нашем автомобиле
-							+e.item-text Инструктор приедет за Вами, после чего вы пройдете 2х часовой маршрут по городу.
-							+e.item-price 1 500 руб.
+							+e.item-title= t 
+							+e.item-text= p
+							+e.item-price= price
 						+e.btn-col.col-md
 							+e.btn.link-modal(href="#modal-call"  data-btn="Отправить заявку" data-title="Отправить заявку") отправить заявку
-			+service
-			+service
-			+service
+			+service("img/@2x/service-i.jpg",'Занятие с инструктором на нашем автомобиле','Инструктор приедет за Вами, после чего вы пройдете 2х часовой маршрут по городу.','1 500 руб.')
+			+service("img/@2x/service-i.jpg",'Занятие с инструктором на нашем автомобиле','Инструктор приедет за Вами, после чего вы пройдете 2х часовой маршрут по городу.','1 500 руб.')
+			+service("img/@2x/service-i.jpg",'Занятие с инструктором на нашем автомобиле','Инструктор приедет за Вами, после чего вы пройдете 2х часовой маршрут по городу.','1 500 руб.')
+		 
 	// end s-services
