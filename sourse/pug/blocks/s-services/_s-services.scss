@@ -12,6 +12,10 @@
 		padding: rem(30);
 		border: 1px solid #dadde2;
 		margin-bottom: rem(30);
+		@include mt;
+		&:hover{
+			box-shadow: 0 5px 15px rgba(32, 22, 0, 0.2);
+		}
 	}
 	&__img-wrap{
 		@include media-breakpoint-down(sm){

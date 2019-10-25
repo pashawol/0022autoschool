@@ -5,7 +5,17 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 	
 	function 	eventHandler() {
 		$('[data-toggle="popover"]').popover({ 
-			placement: 'top'
+			placement: 'top',
+			template: '<div class="tooltip" role="tooltip"><div class="popover-arrow arrow"></div><div class="tooltip-inner"></div></div>'
+			// container: '.stock-block'
+		})
+		// $('.stock-block__item').focus(function(){
+		// 	console.log(this)
+		// 	$('[data-toggle="popover"]').popover('toggle')
+		// })
+		$('[data-toggle="tooltip"]').tooltip({
+			// placement: 'top',
+			// trigger: 'focus'
 		})
 		
 		// полифил для object-fit
@@ -24,7 +34,7 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 
 	// JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
-	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/cont.jpg);"></div>')
+	// $(".main-wrapper").after('<div class="screen" style="background-image: url(screen/1.jpg);"></div>')
 	// /добавляет подложку для pixel perfect
 
 
@@ -75,8 +85,8 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 		// 
 		// скрывает моб меню
 
-		const topH =$('header').innerHeight();
 		const topL = $('.top-line  ').innerHeight();
+		const topH =$('header').innerHeight();
 		$('.main-wrapper').css('paddingTop', topH); 
 		JSCCommon.paddRight('.top-nav, .top-line ');
 		setTimeout(() => {
@@ -147,7 +157,7 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 		mobileFirst: true,
 		prevArrow: arrl2,
 		nextArrow: arrr2,
-		// autoplay: true,
+		autoplay: true,
 		swipeToSlide: true,
 		autoplaySpeed: 3000,
 		lazyLoad: 'progressive',

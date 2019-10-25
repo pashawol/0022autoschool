@@ -3,7 +3,7 @@
 	text-align: center;
 	background-color: #1c1c1c;
 	@include bgs;
-	margin-top: 130px;
+	// margin-top: 130px;
 	position: relative;
 	&::before{
 		content: '';
@@ -172,7 +172,7 @@
 	@include media-breakpoint-down(lg) {}
 
 	@include media-breakpoint-down(md) {
-		margin-top: rem(140) !important;
+		// margin-top: rem(140) !important;
 	}
 
 	@include media-breakpoint-down(sm) {}

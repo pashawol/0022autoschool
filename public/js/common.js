@@ -12,7 +12,16 @@ var btnToggle = $(".toggle-menu-mobile--js"),
 
 function eventHandler() {
 	$('[data-toggle="popover"]').popover({
-		placement: 'top'
+		placement: 'top',
+		template: '<div class="tooltip" role="tooltip"><div class="popover-arrow arrow"></div><div class="tooltip-inner"></div></div>' // container: '.stock-block'
+
+	}); // $('.stock-block__item').focus(function(){
+	// 	console.log(this)
+	// 	$('[data-toggle="popover"]').popover('toggle')
+	// })
+
+	$('[data-toggle="tooltip"]').tooltip({// placement: 'top',
+		// trigger: 'focus'
 	}); // полифил для object-fit
 
 	objectFitImages(); // Picture element HTML5 shiv
@@ -25,8 +34,8 @@ function eventHandler() {
 	JSCCommon.mobileMenu();
 	JSCCommon.inputMask(); // JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
-
-	$(".main-wrapper").after('<div class="screen" style="background-image: url(screen/cont.jpg);"></div>'); // /добавляет подложку для pixel perfect
+	// $(".main-wrapper").after('<div class="screen" style="background-image: url(screen/1.jpg);"></div>')
+	// /добавляет подложку для pixel perfect
 	// const url = document.location.href;
 	// var cur_url = url.split();
 	// console.log(cur_url)
@@ -64,8 +73,8 @@ function eventHandler() {
 		// 
 		// скрывает моб меню
 
-		var topH = $('header').innerHeight();
 		var topL = $('.top-line  ').innerHeight();
+		var topH = $('header').innerHeight();
 		$('.main-wrapper').css('paddingTop', topH);
 		JSCCommon.paddRight('.top-nav, .top-line ');
 		setTimeout(function () {
@@ -122,7 +131,7 @@ function eventHandler() {
 		mobileFirst: true,
 		prevArrow: arrl2,
 		nextArrow: arrr2,
-		// autoplay: true,
+		autoplay: true,
 		swipeToSlide: true,
 		autoplaySpeed: 3000,
 		lazyLoad: 'progressive',

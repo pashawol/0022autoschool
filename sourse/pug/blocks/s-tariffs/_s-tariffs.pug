@@ -66,7 +66,7 @@ mixin s-tariffs(t)
 									//- <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
 									- for (var x = 1; x <= 3; x++)
 										//- 
-										+e.item( role="button" data-toggle="popover"  data-trigger="focus"   tabindex="0"  data-content="Записывайтесь на обучение и принимайте участие в розыгрыше приза AirPods.")
+										+e.item( role="button" tabindex="0" data-toggle="tooltip" title="Записывайтесь на обучение и принимайте участие в розыгрыше приза AirPods.")
 											img.lazy(src="#" data-src=`img/@2x/tariff-stock-${x}.jpg`, alt="")
 											//- +e.dropdown 
 

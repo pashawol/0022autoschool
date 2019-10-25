@@ -1,3 +1,4 @@
+
 .top-line {
   padding-top: rem(7);
   padding-bottom: rem(7);
@@ -67,7 +68,7 @@
     border-radius: 50%;
     width: rem(30px * 1.2);
     height: rem(30px * 1.2);
-    line-height: rem(30* 1.2);
+    line-height: rem(28* 1.2);
     text-align: center;
     display: inline-block;
     padding: 0;
@@ -121,7 +122,15 @@
 
 @include media-breakpoint-down(xs) {}
 }
+body:not(.main-page) .top-line{
+  @include media-breakpoint-down(md) {
+    img{
+      width: rem(84 * .7);
+      height: rem(100 * .7);
+    }
+  }
 
+}
 @-webkit-keyframes spaceboots {
   0% {
     -webkit-transform: translate(2px, 1px) rotate(0deg);

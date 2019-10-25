@@ -53,8 +53,19 @@ $theme-colors: map-remove($theme-colors, "info",   "dark",'warning');
 
 @import "./node_modules/bootstrap/scss/breadcrumb";
 .breadcrumb{
+  vertical-align: top;
+  align-items: center;
+  ol,
+  li{
+    vertical-align: top;
+
+  }
   a{
     color: $secondary;
+    &:hover{
+      text-decoration: none !important;
+      color: #000000;
+    }
   }
   .active{
     a{
@@ -116,3 +127,50 @@ $theme-colors: map-remove($theme-colors, "info",   "dark",'warning');
 @import "base"; 
 @import '../pug/blocks/**/*.scss';
 @import "media";// Всегда в конце
+
+.bs-tooltip-top .arrow {
+  bottom: auto;
+  top: 100%;
+  box-shadow: 0 5px 15px rgba(32, 22, 0, 0.2);
+}
+.bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
+  top: 0;
+  border-width: .8rem .8rem 0;
+  border-top-color: #fff;
+}
+.tooltip{
+  border-radius: rem(15);
+  background-color: #ffffff;
+  border: 1px solid #dadde2;
+  box-shadow: 0 5px 15px rgba(32, 22, 0, 0.2);
+  opacity: 1;
+  top: rem(-15) !important;
+  .tooltip-arrow {
+    position: absolute;
+    display: block;
+    width: $tooltip-arrow-width;
+    height: $tooltip-arrow-height;
+
+    &::before {
+      position: absolute;
+      content: "";
+      border-color: transparent;
+      border-style: solid;
+    }
+  }
+
+
+.bs-tooltip-top {
+  padding: $tooltip-arrow-height 0;
+
+  .tooltip-arrow {
+    bottom: 0;
+
+    &::before {
+      top: 0;
+      border-width: $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-top-color: $tooltip-arrow-color;
+    }
+  }
+}
+}

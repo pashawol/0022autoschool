@@ -16,6 +16,10 @@
 		padding: rem(30) rem(40) rem(24) rem(30);
 		position: relative;
 		height: 100%;
+		@include mt;
+		&:hover{
+			box-shadow: 0 5px 15px rgba(32, 22, 0, 0.2);
+		}
 	}
 	&__link{
 		position: absolute;
@@ -23,8 +27,18 @@
 		top: rem(30);
 		width: rem(30);
 		height: rem(30);
+		line-height: rem(26);
+		vertical-align: middle;
 		background-color: #4a76a8;
 		border-radius: 50%;
+		color: #ffffff !important;
+		text-align: center;
+		&:hover{
+			background-color: #5888bf; 
+		}
+		.icon{
+			font-size: rem(14);
+		}
 		img{
 			@include media-breakpoint-up(xl){
 				top: rem(11);

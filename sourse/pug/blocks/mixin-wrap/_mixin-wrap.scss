@@ -90,6 +90,12 @@
 		
 		font-weight: 500;
 		text-transform: uppercase;
+		&:hover{
+			color: #5888bf;
+			.contact-line__icon-wrap{
+				background-color: #5888bf;
+			}
+		}
 	}
 	&__icon-wrap{
 		flex-shrink: 0;

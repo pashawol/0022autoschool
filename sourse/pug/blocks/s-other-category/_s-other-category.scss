@@ -49,9 +49,10 @@
 		
 	}
 	&__price{
-		font-weight: 500;
+		font-weight: 700;
 		line-height: 1;
 		text-transform: uppercase;
+		font-style: italic;
 		// @include rfs(rem(48));
 		@extend .h5;
 		@extend .pf;

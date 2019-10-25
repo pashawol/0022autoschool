@@ -75,11 +75,12 @@
 		
 	}
 	&__price{
-		font-weight: 500;
+		font-weight: 700;
 		line-height: 1;
 		text-transform: uppercase;
 		@include rfs(rem(48));
 		@extend .pf;
+		font-style: italic;
 		margin-bottom: rem(10);
 	}
 
@@ -128,7 +129,13 @@
 		height: rem(70);
 		border-radius: 15px;
 		outline: none;
-	
+		border-radius: 15px;
+		position: relative;
+		overflow: hidden;
+		@include mt;
+		&:hover{
+			box-shadow: 0 5px 15px rgba(32, 22, 0, 0.2);
+		}
 		img
 		{
 			width: 100%;

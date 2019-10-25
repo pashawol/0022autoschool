@@ -16,6 +16,7 @@
   border: $popover-border-width solid $popover-border-color;
   @include border-radius($popover-border-radius);
   @include box-shadow($popover-box-shadow);
+}
 
   .popover-arrow {
     position: absolute;
@@ -33,7 +34,6 @@
       border-style: solid;
     }
   }
-}
 
 .bs-popover-top {
   margin-bottom: $popover-arrow-height;
