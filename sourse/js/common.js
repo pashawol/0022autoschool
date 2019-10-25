@@ -87,13 +87,15 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 
 		const topL = $('.top-line  ').innerHeight();
 		const topH =$('header').innerHeight();
+		const topS = screen.height / 2;
+		const topHB = $('.header-block').innerHeight() /2;
 		$('.main-wrapper').css('paddingTop', topH); 
 		JSCCommon.paddRight('.top-nav, .top-line ');
 		setTimeout(() => {
 			menufixed();
-			
+			// telfixed();
 		}, 300);
-		function menufixed() {
+		function 	menufixed() {
 			if ($(window).scrollTop() > topL) {
 				$('.top-line  ').addClass('fixed');
 			} else {
@@ -101,9 +103,15 @@ const btnToggle = $(".toggle-menu-mobile--js"),
 				const topL = $('.top-line  ').innerHeight(); 
 			}
 			
+			if (($(window).scrollTop() > topHB) || ($(window).scrollTop() > topS)) {
+				$('.mobile-tel  ').addClass('show');
+			} else {
+				$('.mobile-tel  ').removeClass('show'); 
+			}
+			
 		}
 		$(window).scroll(function () {
-			menufixed();
+			menufixed(); 
 		});
 		// конец добавил
 		if (window.matchMedia("(min-width: 992px)").matches) {

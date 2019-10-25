@@ -75,10 +75,12 @@ function eventHandler() {
 
 		var topL = $('.top-line  ').innerHeight();
 		var topH = $('header').innerHeight();
+		var topS = screen.height / 2;
+		var topHB = $('.header-block').innerHeight() / 2;
 		$('.main-wrapper').css('paddingTop', topH);
 		JSCCommon.paddRight('.top-nav, .top-line ');
 		setTimeout(function () {
-			menufixed();
+			menufixed(); // telfixed();
 		}, 300);
 
 		function menufixed() {
@@ -88,6 +90,12 @@ function eventHandler() {
 				$('.top-line  ').removeClass('fixed');
 
 				var _topL = $('.top-line  ').innerHeight();
+			}
+
+			if ($(window).scrollTop() > topHB || $(window).scrollTop() > topS) {
+				$('.mobile-tel  ').addClass('show');
+			} else {
+				$('.mobile-tel  ').removeClass('show');
 			}
 		}
 
