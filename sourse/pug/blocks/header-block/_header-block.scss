@@ -2,7 +2,9 @@
 	display: block;
 	text-align: center;
 	background-color: #1c1c1c;
-	@include bgs;
+	background-repeat: repeat;
+	background-size: auto;
+	// @include bgs;
 	// margin-top: 130px;
 	position: relative;
 	&::before{
