@@ -51,9 +51,9 @@
 		line-height: 1.88;
 		text-transform: uppercase;
 		color: #b5b5b5;
+		@extend .pf;
 		a{
 			color: #b5b5b5;
-			@extend .pf;
 			display: inline-block;
 			margin-bottom: rem(10);
 			text-decoration: none !important;
@@ -91,7 +91,9 @@
 	@include media-breakpoint-down(xl) {}
 	@include media-breakpoint-down(lg) {}
 	@include media-breakpoint-down(md) {}
-	@include media-breakpoint-down(sm) {}
+	@include media-breakpoint-down(sm) {
+		padding-bottom: 80px;
+	}
 	@include media-breakpoint-down(xs) {} 
 	
 }
@@ -100,11 +102,13 @@
 	@extend .btn;
 	@extend .btn-block;
 	@extend .btn-primary;
+	padding: rem(5) 0;
 	bottom: 0;
 	left: 0;
 	border-radius: 0;
 	@include mt;
 	transform: translateY(100%);
+	font-size: rem(30) !important;
 	&.show{
 		transform: translateY(0);
 	}

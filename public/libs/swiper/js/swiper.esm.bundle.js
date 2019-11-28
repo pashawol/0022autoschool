@@ -1,5 +1,5 @@
 /**
- * Swiper 5.1.0
+ * Swiper 5.2.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * http://swiperjs.com
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: October 16, 2019
+ * Released on: November 16, 2019
  */
 
 import { $, addClass, removeClass, hasClass, toggleClass, attr, removeAttr, data, transform, transition as transition$1, on, off, trigger, transitionEnd as transitionEnd$1, outerWidth, outerHeight, offset, css, each, html, text, is, index, eq, append, prepend, next, nextAll, prev, prevAll, parent, parents, closest, find, children, filter, remove, add, styles } from 'dom7/dist/dom7.modular';
@@ -230,11 +230,11 @@ class SwiperClass {
     const self = this;
     if (typeof handler !== 'function') return self;
     function onceHandler(...args) {
-      handler.apply(self, args);
       self.off(events, onceHandler);
       if (onceHandler.f7proxy) {
         delete onceHandler.f7proxy;
       }
+      handler.apply(self, args);
     }
     onceHandler.f7proxy = handler;
     return self.on(events, onceHandler, priority);
@@ -481,8 +481,11 @@ function updateSlides () {
       if (params.slidesPerColumnFill === 'row' && params.slidesPerGroup > 1) {
         const groupIndex = Math.floor(i / (params.slidesPerGroup * params.slidesPerColumn));
         const slideIndexInGroup = i - params.slidesPerColumn * params.slidesPerGroup * groupIndex;
-        row = Math.floor(slideIndexInGroup / params.slidesPerGroup);
-        column = (slideIndexInGroup - row * params.slidesPerGroup) + groupIndex * params.slidesPerGroup;
+        const columnsInGroup = groupIndex === 0
+          ? params.slidesPerGroup
+          : Math.min(Math.ceil((slidesLength - groupIndex * slidesPerColumn * params.slidesPerGroup) / slidesPerColumn), params.slidesPerGroup);
+        row = Math.floor(slideIndexInGroup / columnsInGroup);
+        column = (slideIndexInGroup - row * columnsInGroup) + groupIndex * params.slidesPerGroup;
 
         newSlideOrderIndex = column + ((row * slidesNumberEvenToRows) / slidesPerColumn);
         slide
@@ -652,6 +655,20 @@ function updateSlides () {
       if (rtl) slides.filter(slidesForMargin).css({ marginLeft: `${spaceBetween}px` });
       else slides.filter(slidesForMargin).css({ marginRight: `${spaceBetween}px` });
     } else slides.filter(slidesForMargin).css({ marginBottom: `${spaceBetween}px` });
+  }
+
+  if (params.centeredSlides && params.centeredSlidesBounds) {
+    let allSlidesSize = 0;
+    slidesSizesGrid.forEach((slideSizeValue) => {
+      allSlidesSize += slideSizeValue + (params.spaceBetween ? params.spaceBetween : 0);
+    });
+    allSlidesSize -= params.spaceBetween;
+    const maxSnap = allSlidesSize - swiperSize;
+    snapGrid = snapGrid.map((snap) => {
+      if (snap < 0) return -offsetBefore;
+      if (snap > maxSnap) return maxSnap + offsetAfter;
+      return snap;
+    });
   }
 
   if (params.centerInsufficientSlides) {
@@ -1402,21 +1419,32 @@ function slideReset (speed = this.params.speed, runCallbacks = true, internal) {
 }
 
 /* eslint no-unused-vars: "off" */
-function slideToClosest (speed = this.params.speed, runCallbacks = true, internal) {
+function slideToClosest (speed = this.params.speed, runCallbacks = true, internal, threshold = 0.5) {
   const swiper = this;
   let index = swiper.activeIndex;
   const snapIndex = Math.floor(index / swiper.params.slidesPerGroup);
 
-  if (snapIndex < swiper.snapGrid.length - 1) {
-    const translate = swiper.rtlTranslate ? swiper.translate : -swiper.translate;
+  const translate = swiper.rtlTranslate ? swiper.translate : -swiper.translate;
 
+  if (translate >= swiper.snapGrid[snapIndex]) {
+    // The current translate is on or after the current snap index, so the choice
+    // is between the current index and the one after it.
     const currentSnap = swiper.snapGrid[snapIndex];
     const nextSnap = swiper.snapGrid[snapIndex + 1];
-
-    if ((translate - currentSnap) > (nextSnap - currentSnap) / 2) {
-      index = swiper.params.slidesPerGroup;
+    if ((translate - currentSnap) > (nextSnap - currentSnap) * threshold) {
+      index += swiper.params.slidesPerGroup;
+    }
+  } else {
+    // The current translate is before the current snap index, so the choice
+    // is between the current index and the one before it.
+    const prevSnap = swiper.snapGrid[snapIndex - 1];
+    const currentSnap = swiper.snapGrid[snapIndex];
+    if ((translate - prevSnap) <= (currentSnap - prevSnap) * threshold) {
+      index -= swiper.params.slidesPerGroup;
     }
   }
+  index = Math.max(index, 0);
+  index = Math.min(index, swiper.snapGrid.length - 1);
 
   return swiper.slideTo(index, speed, runCallbacks, internal);
 }
@@ -1521,8 +1549,11 @@ function loopCreate () {
 
 function loopFix () {
   const swiper = this;
+
+  swiper.emit('beforeLoopFix');
+
   const {
-    params, activeIndex, slides, loopedSlides, allowSlidePrev, allowSlideNext, snapGrid, rtlTranslate: rtl,
+    activeIndex, slides, loopedSlides, allowSlidePrev, allowSlideNext, snapGrid, rtlTranslate: rtl,
   } = swiper;
   let newIndex;
   swiper.allowSlidePrev = true;
@@ -1530,7 +1561,6 @@ function loopFix () {
 
   const snapTranslate = -snapGrid[activeIndex];
   const diff = snapTranslate - swiper.getTranslate();
-
 
   // Fix For Negative Oversliding
   if (activeIndex < loopedSlides) {
@@ -1540,7 +1570,7 @@ function loopFix () {
     if (slideChanged && diff !== 0) {
       swiper.setTranslate((rtl ? -swiper.translate : swiper.translate) - diff);
     }
-  } else if ((params.slidesPerView === 'auto' && activeIndex >= loopedSlides * 2) || (activeIndex >= slides.length - loopedSlides)) {
+  } else if (activeIndex >= slides.length - loopedSlides) {
     // Fix For Positive Oversliding
     newIndex = -slides.length + activeIndex + loopedSlides;
     newIndex += loopedSlides;
@@ -1551,6 +1581,8 @@ function loopFix () {
   }
   swiper.allowSlidePrev = allowSlidePrev;
   swiper.allowSlideNext = allowSlideNext;
+
+  swiper.emit('loopFix');
 }
 
 function loopDestroy () {
@@ -2304,6 +2336,24 @@ function onTouchEnd (event) {
         } else {
           momentumDuration = Math.abs((newPosition - swiper.translate) / swiper.velocity);
         }
+        if (params.freeModeSticky) {
+          // If freeModeSticky is active and the user ends a swipe with a slow-velocity
+          // event, then durations can be 20+ seconds to slide one (or zero!) slides.
+          // It's easy to see this when simulating touch with mouse events. To fix this,
+          // limit single-slide swipes to the default slide duration. This also has the
+          // nice side effect of matching slide speed if the user stopped moving before
+          // lifting finger or mouse vs. moving slowly before lifting the finger/mouse.
+          // For faster swipes, also apply limits (albeit higher ones).
+          const moveDistance = Math.abs((rtl ? -newPosition : newPosition) - swiper.translate);
+          const currentSlideSize = swiper.slidesSizesGrid[swiper.activeIndex];
+          if (moveDistance < currentSlideSize) {
+            momentumDuration = params.speed;
+          } else if (moveDistance < 2 * currentSlideSize) {
+            momentumDuration = params.speed * 1.5;
+          } else {
+            momentumDuration = params.speed * 2.5;
+          }
+        }
       } else if (params.freeModeSticky) {
         swiper.slideToClosest();
         return;
@@ -2433,23 +2483,13 @@ function onResize () {
   swiper.updateSize();
   swiper.updateSlides();
 
-  if (params.freeMode) {
-    const newTranslate = Math.min(Math.max(swiper.translate, swiper.maxTranslate()), swiper.minTranslate());
-    swiper.setTranslate(newTranslate);
-    swiper.updateActiveIndex();
-    swiper.updateSlidesClasses();
-
-    if (params.autoHeight) {
-      swiper.updateAutoHeight();
-    }
+  swiper.updateSlidesClasses();
+  if ((params.slidesPerView === 'auto' || params.slidesPerView > 1) && swiper.isEnd && !swiper.params.centeredSlides) {
+    swiper.slideTo(swiper.slides.length - 1, 0, false, true);
   } else {
-    swiper.updateSlidesClasses();
-    if ((params.slidesPerView === 'auto' || params.slidesPerView > 1) && swiper.isEnd && !swiper.params.centeredSlides) {
-      swiper.slideTo(swiper.slides.length - 1, 0, false, true);
-    } else {
-      swiper.slideTo(swiper.activeIndex, 0, false, true);
-    }
+    swiper.slideTo(swiper.activeIndex, 0, false, true);
   }
+
   if (swiper.autoplay && swiper.autoplay.running && swiper.autoplay.paused) {
     swiper.autoplay.run();
   }
@@ -2552,7 +2592,11 @@ function attachEvents() {
   }
 
   // Resize handler
-  swiper.on((Device.ios || Device.android ? 'resize orientationchange observerUpdate' : 'resize observerUpdate'), onResize, true);
+  if (params.updateOnWindowResize) {
+    swiper.on((Device.ios || Device.android ? 'resize orientationchange observerUpdate' : 'resize observerUpdate'), onResize, true);
+  } else {
+    swiper.on('observerUpdate', onResize, true);
+  }
 }
 
 function detachEvents() {
@@ -2801,9 +2845,16 @@ var images = {
 
 function checkOverflow() {
   const swiper = this;
+  const params = swiper.params;
   const wasLocked = swiper.isLocked;
+  const lastSlidePosition = swiper.slides.length > 0 && (params.slidesOffsetBefore + (params.spaceBetween * (swiper.slides.length - 1)) + ((swiper.slides[0]).offsetWidth) * swiper.slides.length);
 
-  swiper.isLocked = swiper.snapGrid.length === 1;
+  if (params.slidesOffsetBefore && params.slidesOffsetAfter && lastSlidePosition) {
+    swiper.isLocked = lastSlidePosition <= swiper.size;
+  } else {
+    swiper.isLocked = swiper.snapGrid.length === 1;
+  }
+
   swiper.allowSlideNext = !swiper.isLocked;
   swiper.allowSlidePrev = !swiper.isLocked;
 
@@ -2825,6 +2876,7 @@ var defaults = {
   initialSlide: 0,
   speed: 300,
   cssMode: false,
+  updateOnWindowResize: true,
   //
   preventInteractionOnTransition: false,
 
@@ -2864,6 +2916,7 @@ var defaults = {
   slidesPerColumnFill: 'column',
   slidesPerGroup: 1,
   centeredSlides: false,
+  centeredSlidesBounds: false,
   slidesOffsetBefore: 0, // in px
   slidesOffsetAfter: 0, // in px
   normalizeSlideIndex: true,
@@ -3964,6 +4017,8 @@ function isEventSupported() {
 }
 const Mousewheel = {
   lastScrollTime: Utils.now(),
+  lastEventBeforeSnap: undefined,
+  recentWheelEvents: [],
   event() {
     if (window.navigator.userAgent.indexOf('firefox') > -1) return 'DOMMouseScroll';
     return isEventSupported() ? 'wheel' : 'mousewheel';
@@ -4079,57 +4134,193 @@ const Mousewheel = {
     if (params.invert) delta = -delta;
 
     if (!swiper.params.freeMode) {
-      if (Utils.now() - swiper.mousewheel.lastScrollTime > 60) {
-        if (delta < 0) {
-          if ((!swiper.isEnd || swiper.params.loop) && !swiper.animating) {
-            swiper.slideNext();
-            swiper.emit('scroll', e);
-          } else if (params.releaseOnEdges) return true;
-        } else if ((!swiper.isBeginning || swiper.params.loop) && !swiper.animating) {
-          swiper.slidePrev();
-          swiper.emit('scroll', e);
-        } else if (params.releaseOnEdges) return true;
+      // Register the new event in a variable which stores the relevant data
+      const newEvent = {
+        time: Utils.now(),
+        delta: Math.abs(delta),
+        direction: Math.sign(delta),
+        raw: event,
+      };
+
+      // Keep the most recent events
+      const recentWheelEvents = swiper.mousewheel.recentWheelEvents;
+      if (recentWheelEvents.length >= 2) {
+        recentWheelEvents.shift(); // only store the last N events
       }
-      swiper.mousewheel.lastScrollTime = (new window.Date()).getTime();
+      const prevEvent = recentWheelEvents.length ? recentWheelEvents[recentWheelEvents.length - 1] : undefined;
+      recentWheelEvents.push(newEvent);
+
+      // If there is at least one previous recorded event:
+      //   If direction has changed or
+      //   if the scroll is quicker than the previous one:
+      //     Animate the slider.
+      // Else (this is the first time the wheel is moved):
+      //     Animate the slider.
+      if (prevEvent) {
+        if (newEvent.direction !== prevEvent.direction || newEvent.delta > prevEvent.delta) {
+          swiper.mousewheel.animateSlider(newEvent);
+        }
+      } else {
+        swiper.mousewheel.animateSlider(newEvent);
+      }
+
+      // If it's time to release the scroll:
+      //   Return now so you don't hit the preventDefault.
+      if (swiper.mousewheel.releaseScroll(newEvent)) {
+        return true;
+      }
     } else {
       // Freemode or scrollContainer:
-      if (swiper.params.loop) {
-        swiper.loopFix();
-      }
-      let position = swiper.getTranslate() + (delta * params.sensitivity);
-      const wasBeginning = swiper.isBeginning;
-      const wasEnd = swiper.isEnd;
 
-      if (position >= swiper.minTranslate()) position = swiper.minTranslate();
-      if (position <= swiper.maxTranslate()) position = swiper.maxTranslate();
+      // If we recently snapped after a momentum scroll, then ignore wheel events
+      // to give time for the deceleration to finish. Stop ignoring after 500 msecs
+      // or if it's a new scroll (larger delta or inverse sign as last event before
+      // an end-of-momentum snap).
+      const newEvent = { time: Utils.now(), delta: Math.abs(delta), direction: Math.sign(delta) };
+      const { lastEventBeforeSnap } = swiper.mousewheel;
+      const ignoreWheelEvents = lastEventBeforeSnap
+        && newEvent.time < lastEventBeforeSnap.time + 500
+        && newEvent.delta <= lastEventBeforeSnap.delta
+        && newEvent.direction === lastEventBeforeSnap.direction;
+      if (!ignoreWheelEvents) {
+        swiper.mousewheel.lastEventBeforeSnap = undefined;
 
-      swiper.setTransition(0);
-      swiper.setTranslate(position);
-      swiper.updateProgress();
-      swiper.updateActiveIndex();
-      swiper.updateSlidesClasses();
+        if (swiper.params.loop) {
+          swiper.loopFix();
+        }
+        let position = swiper.getTranslate() + (delta * params.sensitivity);
+        const wasBeginning = swiper.isBeginning;
+        const wasEnd = swiper.isEnd;
 
-      if ((!wasBeginning && swiper.isBeginning) || (!wasEnd && swiper.isEnd)) {
+        if (position >= swiper.minTranslate()) position = swiper.minTranslate();
+        if (position <= swiper.maxTranslate()) position = swiper.maxTranslate();
+
+        swiper.setTransition(0);
+        swiper.setTranslate(position);
+        swiper.updateProgress();
+        swiper.updateActiveIndex();
         swiper.updateSlidesClasses();
-      }
 
-      if (swiper.params.freeModeSticky) {
-        clearTimeout(swiper.mousewheel.timeout);
-        swiper.mousewheel.timeout = Utils.nextTick(() => {
-          swiper.slideToClosest();
-        }, 300);
-      }
-      // Emit event
-      swiper.emit('scroll', e);
+        if ((!wasBeginning && swiper.isBeginning) || (!wasEnd && swiper.isEnd)) {
+          swiper.updateSlidesClasses();
+        }
 
-      // Stop autoplay
-      if (swiper.params.autoplay && swiper.params.autoplayDisableOnInteraction) swiper.autoplay.stop();
-      // Return page scroll on edge positions
-      if (position === swiper.minTranslate() || position === swiper.maxTranslate()) return true;
+        if (swiper.params.freeModeSticky) {
+          // When wheel scrolling starts with sticky (aka snap) enabled, then detect
+          // the end of a momentum scroll by storing recent (N=15?) wheel events.
+          // 1. do all N events have decreasing or same (absolute value) delta?
+          // 2. did all N events arrive in the last M (M=500?) msecs?
+          // 3. does the earliest event have an (absolute value) delta that's
+          //    at least P (P=1?) larger than the most recent event's delta?
+          // 4. does the latest event have a delta that's smaller than Q (Q=6?) pixels?
+          // If 1-4 are "yes" then we're near the end of a momuntum scroll deceleration.
+          // Snap immediately and ignore remaining wheel events in this scroll.
+          // See comment above for "remaining wheel events in this scroll" determination.
+          // If 1-4 aren't satisfied, then wait to snap until 500ms after the last event.
+          clearTimeout(swiper.mousewheel.timeout);
+          swiper.mousewheel.timeout = undefined;
+          const recentWheelEvents = swiper.mousewheel.recentWheelEvents;
+          if (recentWheelEvents.length >= 15) {
+            recentWheelEvents.shift(); // only store the last N events
+          }
+          const prevEvent = recentWheelEvents.length ? recentWheelEvents[recentWheelEvents.length - 1] : undefined;
+          const firstEvent = recentWheelEvents[0];
+          recentWheelEvents.push(newEvent);
+          if (prevEvent && (newEvent.delta > prevEvent.delta || newEvent.direction !== prevEvent.direction)) {
+            // Increasing or reverse-sign delta means the user started scrolling again. Clear the wheel event log.
+            recentWheelEvents.splice(0);
+          } else if (recentWheelEvents.length >= 15
+              && newEvent.time - firstEvent.time < 500
+              && firstEvent.delta - newEvent.delta >= 1
+              && newEvent.delta <= 6
+          ) {
+            // We're at the end of the deceleration of a momentum scroll, so there's no need
+            // to wait for more events. Snap ASAP on the next tick.
+            // Also, because there's some remaining momentum we'll bias the snap in the
+            // direction of the ongoing scroll because it's better UX for the scroll to snap
+            // in the same direction as the scroll instead of reversing to snap.  Therefore,
+            // if it's already scrolled more than 20% in the current direction, keep going.
+            const snapToThreshold = delta > 0 ? 0.8 : 0.2;
+            swiper.mousewheel.lastEventBeforeSnap = newEvent;
+            recentWheelEvents.splice(0);
+            swiper.mousewheel.timeout = Utils.nextTick(() => {
+              swiper.slideToClosest(swiper.params.speed, true, undefined, snapToThreshold);
+            }, 0); // no delay; move on next tick
+          }
+          if (!swiper.mousewheel.timeout) {
+            // if we get here, then we haven't detected the end of a momentum scroll, so
+            // we'll consider a scroll "complete" when there haven't been any wheel events
+            // for 500ms.
+            swiper.mousewheel.timeout = Utils.nextTick(() => {
+              const snapToThreshold = 0.5;
+              swiper.mousewheel.lastEventBeforeSnap = newEvent;
+              recentWheelEvents.splice(0);
+              swiper.slideToClosest(swiper.params.speed, true, undefined, snapToThreshold);
+            }, 500);
+          }
+        }
+
+        // Emit event
+        if (!ignoreWheelEvents) swiper.emit('scroll', e);
+
+        // Stop autoplay
+        if (swiper.params.autoplay && swiper.params.autoplayDisableOnInteraction) swiper.autoplay.stop();
+        // Return page scroll on edge positions
+        if (position === swiper.minTranslate() || position === swiper.maxTranslate()) return true;
+      }
     }
 
     if (e.preventDefault) e.preventDefault();
     else e.returnValue = false;
+    return false;
+  },
+  animateSlider(newEvent) {
+    const swiper = this;
+    // If the movement is NOT big enough and
+    // if the last time the user scrolled was too close to the current one (avoid continuously triggering the slider):
+    //   Don't go any further (avoid insignificant scroll movement).
+    if (newEvent.delta >= 6 && Utils.now() - swiper.mousewheel.lastScrollTime < 60) {
+      // Return false as a default
+      return true;
+    }
+    // If user is scrolling towards the end:
+    //   If the slider hasn't hit the latest slide or
+    //   if the slider is a loop and
+    //   if the slider isn't moving right now:
+    //     Go to next slide and
+    //     emit a scroll event.
+    // Else (the user is scrolling towards the beginning) and
+    // if the slider hasn't hit the first slide or
+    // if the slider is a loop and
+    // if the slider isn't moving right now:
+    //   Go to prev slide and
+    //   emit a scroll event.
+    if (newEvent.direction < 0) {
+      if ((!swiper.isEnd || swiper.params.loop) && !swiper.animating) {
+        swiper.slideNext();
+        swiper.emit('scroll', newEvent.raw);
+      }
+    } else if ((!swiper.isBeginning || swiper.params.loop) && !swiper.animating) {
+      swiper.slidePrev();
+      swiper.emit('scroll', newEvent.raw);
+    }
+    // If you got here is because an animation has been triggered so store the current time
+    swiper.mousewheel.lastScrollTime = (new window.Date()).getTime();
+    // Return false as a default
+    return false;
+  },
+  releaseScroll(newEvent) {
+    const swiper = this;
+    const params = swiper.params.mousewheel;
+    if (newEvent.direction < 0) {
+      if (swiper.isEnd && !swiper.params.loop && params.releaseOnEdges) {
+        // Return true to animate scroll on edges
+        return true;
+      }
+    } else if (swiper.isBeginning && !swiper.params.loop && params.releaseOnEdges) {
+      // Return true to animate scroll on edges
+      return true;
+    }
     return false;
   },
   enable() {
@@ -4192,7 +4383,11 @@ var Mousewheel$1 = {
         handle: Mousewheel.handle.bind(swiper),
         handleMouseEnter: Mousewheel.handleMouseEnter.bind(swiper),
         handleMouseLeave: Mousewheel.handleMouseLeave.bind(swiper),
+        animateSlider: Mousewheel.animateSlider.bind(swiper),
+        releaseScroll: Mousewheel.releaseScroll.bind(swiper),
         lastScrollTime: Utils.now(),
+        lastEventBeforeSnap: undefined,
+        recentWheelEvents: [],
       },
     });
   },
@@ -6185,7 +6380,7 @@ const a11y = {
   updateNavigation() {
     const swiper = this;
 
-    if (swiper.params.loop) return;
+    if (swiper.params.loop || !swiper.navigation) return;
     const { $nextEl, $prevEl } = swiper.navigation;
 
     if ($prevEl && $prevEl.length > 0) {
@@ -7330,6 +7525,12 @@ const Thumbs = {
       thumbsToActivate = swiper.params.slidesPerView;
     }
 
+    if (!swiper.params.thumbs.multipleActiveThumbs) {
+      thumbsToActivate = 1;
+    }
+
+    thumbsToActivate = Math.floor(thumbsToActivate);
+
     thumbsSwiper.slides.removeClass(thumbActiveClass);
     if (thumbsSwiper.params.loop || (thumbsSwiper.params.virtual && thumbsSwiper.params.virtual.enabled)) {
       for (let i = 0; i < thumbsToActivate; i += 1) {
@@ -7346,6 +7547,7 @@ var Thumbs$1 = {
   name: 'thumbs',
   params: {
     thumbs: {
+      multipleActiveThumbs: true,
       swiper: null,
       slideThumbActiveClass: 'swiper-slide-thumb-active',
       thumbsContainerClass: 'swiper-container-thumbs',
@@ -7444,3 +7646,4 @@ if (typeof Swiper.use === 'undefined') {
 Swiper.use(components);
 
 export default Swiper;
+//# sourceMappingURL=swiper.esm.bundle.js.map
