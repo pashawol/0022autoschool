@@ -194,7 +194,11 @@
 		font-style: italic;
 		text-transform: uppercase;
 		padding: em(8) em(5);
-		margin-bottom: rem(35);
+		@include media-breakpoint-up(sm) {
+
+			margin-bottom: rem(35); 
+		}
+		margin-bottom: rem(35 /2); 
 		line-height: 1.1;
 		color: $black;
 		background-image: url(../img/@2x/black-fr-bg.jpg);
@@ -202,26 +206,58 @@
 	&__text{
 		@extend .asph;
 	@include rfs(rem(48))
-	margin-bottom: rem(35); 
+	@include media-breakpoint-up(sm) {
+
+		margin-bottom: rem(35); 
+	}
+	margin-bottom: rem(35 /2); 
 }
 	&__btn-wrap{
 		display: flex;
 		flex-wrap: wrap;
-		margin-left: -15px;
-		margin-right: -15px;
+		@include media-breakpoint-up(sm) {
+
+			margin-left: -15px;
+			margin-right: -15px;
+		}
+		margin-left: -5px;
+		margin-right: -5px;
 		justify-content: center;
-		padding-bottom: rem(30);
+		
+		@include media-breakpoint-up(sm) {
+
+			padding-bottom: rem(30);
+		}
+		padding-bottom: rem(30 / 2);
 	}
 	&__btn{
-		margin-left: 15px;
-		margin-right: 15px;
+		@include media-breakpoint-up(sm) {
+
+			margin-left: 15px;
+			margin-right: 15px;
+		}
+		margin-left: 5px;
+		margin-right: 5px;
 		@extend .btn;
+		// display: block;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		// @extend .btn-block;
 		@include media-breakpoint-up(md) {
 
 			width: rem(300);
 		}
-		width: rem(260);
+		@include media-breakpoint-down(xs){
+			font-size: rem(16);
+		}
+		@include media-breakpoint-up(sm) {
+
+			width: rem(260);
+		}
+		padding-left: rem(5);
+		padding-right: rem(5);
+		width: calc(50% - 10px);
 		margin-bottom: rem(20);
 	}
 }
