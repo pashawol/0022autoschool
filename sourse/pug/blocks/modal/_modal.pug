@@ -49,7 +49,15 @@ mixin modal()
 		+form-wrap()(id="modal-call" class="  modal-win modal-form" )
 			.text-center
 				+e.title--js
-				p Заполните форму, мы&nbsp;свяжемся с&nbsp;Вами сразу как получим вашу заявку.
+				.dop-row-js.row.h6.text-left.row--small
+					.col-auto
+						.mark-modal
+							+icon('home')
+					.col
+						+e.text-map--js
+
+				p.text-secondary Заполните форму, мы&nbsp;свяжемся с&nbsp;Вами сразу как получим вашу заявку.
+
 			+input("Введите имя",'text','','name')(required) 
 			+input("+_(___)-___-__-__","tel")(required)
 			//- +input("email","Ваше email")(required)

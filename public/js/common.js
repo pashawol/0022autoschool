@@ -1,16 +1,131 @@
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var $ = jQuery;
 var btnToggle = $(".toggle-menu-mobile--js"),
 		menu = $(".menu-mobile--js");
+var JSCCommon = {
+	// часть вызов скриптов здесь, для использования при AJAX
+	// функции для запуска lazy
+	// /LazyFunction
+	paddRight: function paddRight(elem) {
+		var div = $('<div></div>');
+		div.css({
+			"overflowY": 'scroll',
+			"width": '50px',
+			"height": '50px'
+		});
+		$('body').append(div);
+		var padd = div.offsetWidth - div.clientWidth; // console.log(1);
+
+		$(elem).css("paddingRight", padd);
+		div.remove();
+	},
+	modalCall: function modalCall() {
+		$(".link-modal").fancybox({
+			arrows: false,
+			infobar: false,
+			touch: false,
+			autoFocus: false,
+			closeExisting: true,
+			i18n: {
+				en: {
+					CLOSE: "Закрыть",
+					NEXT: "Вперед",
+					PREV: "Назад" // PLAY_START: "Start slideshow",
+					// PLAY_STOP: "Pause slideshow",
+					// FULL_SCREEN: "Full screen",
+					// THUMBS: "Thumbnails",
+					// DOWNLOAD: "Download",
+					// SHARE: "Share",
+					// ZOOM: "Zoom"
+
+				}
+			},
+			type: 'inline'
+		});
+		$(".modal-close-js").click(function () {
+			$.fancybox.close();
+		});
+		$(document).on('click', '.link-modal-stock-js', function () {
+			console.log($(this).attr("href"));
+			$($(this).attr("href") + " .modal-content").html($(this).parent().find('.js-block').html());
+		});
+		$(document).on('click', '.link-modal', function () {
+			var th = $(this);
+			var modal = th.attr('href');
+			$(modal).find(".order").val(th.data('order'));
+			$(modal).find(".form-wrap__title--js").html(th.data('title')); // $(modal).find(".form-wrap__text--js").html(th.data('text')); 
+
+			$(modal).find(".form-wrap__btn").text(th.data('btn'));
+			$(modal).find(".dop-row-js").addClass("d-none");
+
+			if ($(this).hasClass("modal-win__btn")) {
+				$(modal).find(".order").val("Акция: " + th.parent().find(".title").text());
+			}
+
+			if ($(this).hasClass("s-services__btn")) {
+				$(modal).find(".order").val("Заявка на: " + th.parents(".s-services__item").find(".s-services__item-title").text());
+			}
+		});
+	},
+	// /magnificPopupCall
+	mobileMenu: function mobileMenu() {
+		// закрыть/открыть мобильное меню
+		btnToggle.click(function () {
+			btnToggle.toggleClass("on"); // $("body").toggleClass("fixed");
+
+			menu.toggleClass("active");
+			$("body").toggleClass("compensate-for-scrollbar");
+			$("body, html").toggleClass("fixed"); // JSCCommon.paddRight(' body');
+
+			return false;
+		}); // $('.menu-mobile--js ul li a').on('click', function () {
+		// 	$(".menu-mobile--js .toggle-mnu").click();
+		// });
+
+		$(document).mouseup(function (e) {
+			var container = $(".menu-mobile--js.active");
+
+			if (container.has(e.target).length === 0) {
+				btnToggle.removeClass("on"); // $("body").toggleClass("fixed");
+
+				menu.removeClass("active");
+				$("body, html").removeClass("fixed").css("paddingRight", 0); // JSCCommon.paddRight(' body.fixed');
+			}
+		});
+	},
+	// /mobileMenu
+	// табы  . 
+	tabscostume: function tabscostume(tab) {
+		$('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
+			$(this).addClass('active').siblings().removeClass('active').closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active').eq($(this).index()).fadeIn().addClass('active');
+		});
+	},
+	// /табы  . 
+	// /nlineSVG
+	// CustomInputFileCustomInputFile() {
+	// 	const file = $(".add-file input[type=file]");
+	// 	file.change(function () {
+	// 		const filename = $(this).val().replace(/.*\\/, "");
+	// 		const name = $(".add-file__filename  ");
+	// 		name.text(filename);
+	// 	});
+	// },
+	// /CustomYoutubeBlock
+	inputMask: function inputMask() {
+		// mask for input
+		$('input[type="tel"]').attr("pattern", "[+][0-9]{1}[(][0-9]{3}[)]-[0-9]{3}-[0-9]{2}-[0-9]{2}").inputmask("+9(999)-999-99-99");
+	} // /inputMask
+
+}; // JSCCommon.LazyFunction();
+
+/***/
 
 function eventHandler() {
+	var _$$slick;
+
 	$('[data-toggle="popover"]').popover({
 		placement: 'top',
 		template: '<div class="tooltip" role="tooltip"><div class="popover-arrow arrow"></div><div class="tooltip-inner"></div></div>' // container: '.stock-block'
@@ -132,7 +247,19 @@ function eventHandler() {
 	var arrl2 = ' <div class="r">' + icon,
 			arrr2 = ' <div class="l">' + icon; // // карусель
 
-	var defaultSlide = _defineProperty({
+	var defaultSlide = {
+		speed: 200,
+		infinite: true,
+		arrows: true,
+		mobileFirst: true,
+		prevArrow: arrl2,
+		nextArrow: arrr2
+	}; // $(".slick-slider").find("a").click(function() {
+	// 	if (isSliding) {
+	// 	}
+	// });
+
+	$('.s-other-category__slider--js').slick((_$$slick = {
 		speed: 200,
 		infinite: true,
 		arrows: true,
@@ -144,14 +271,42 @@ function eventHandler() {
 		autoplaySpeed: 3000,
 		lazyLoad: 'progressive',
 		draggable: true
-	}, "draggable", false); // $(".slick-slider").find("a").click(function() {
-	// 	if (isSliding) {
-	// 	}
-	// });
-
-
-	$('.s-other-category__slider--js').slick(_objectSpread({}, defaultSlide, {
+	}, _defineProperty(_$$slick, "draggable", false), _defineProperty(_$$slick, "slidesToShow", 1), _defineProperty(_$$slick, "responsive", [{
+		breakpoint: 992,
+		settings: {
+			slidesToShow: 3
+		}
+	}, {
+		breakpoint: 768,
+		settings: {
+			slidesToShow: 2
+		}
+	}]), _$$slick));
+	$('.two-slide-js').slick({
+		speed: 200,
+		infinite: true,
+		arrows: true,
+		mobileFirst: true,
+		prevArrow: arrl2,
+		nextArrow: arrr2,
+		lazyLoad: 'progressive',
 		slidesToShow: 1,
+		responsive: [{
+			breakpoint: 768,
+			settings: {
+				slidesToShow: 2
+			}
+		}]
+	});
+	$('.s-tariffs__slider--js').slick({
+		slidesToShow: 1,
+		// speed: 200,
+		infinite: true,
+		arrows: true,
+		mobileFirst: true,
+		prevArrow: arrl2,
+		nextArrow: arrr2,
+		adaptiveHeight: true,
 		responsive: [{
 			breakpoint: 992,
 			settings: {
@@ -163,16 +318,7 @@ function eventHandler() {
 				slidesToShow: 2
 			}
 		}]
-	}));
-	$('.two-slide-js').slick(_objectSpread({}, defaultSlide, {
-		slidesToShow: 1,
-		responsive: [{
-			breakpoint: 768,
-			settings: {
-				slidesToShow: 2
-			}
-		}]
-	}));
+	});
 
 	var gets = function () {
 		var a = window.location.search;
@@ -262,119 +408,105 @@ if (document.readyState !== 'loading') {
 	document.addEventListener('DOMContentLoaded', eventHandler);
 }
 
-var JSCCommon = {
-	// часть вызов скриптов здесь, для использования при AJAX
-	// функции для запуска lazy
-	// /LazyFunction
-	paddRight: function paddRight(elem) {
-		var div = $('<div></div>');
-		div.css({
-			"overflowY": 'scroll',
-			"width": '50px',
-			"height": '50px'
-		});
-		$('body').append(div);
-		var padd = div.offsetWidth - div.clientWidth; // console.log(1);
+ymaps.ready(function () {
+	var _MapMarks;
 
-		$(elem).css("paddingRight", padd);
-		div.remove();
-	},
-	modalCall: function modalCall() {
-		$(".link-modal").fancybox({
-			arrows: false,
-			infobar: false,
-			touch: false,
-			autoFocus: false,
-			closeExisting: true,
-			i18n: {
-				en: {
-					CLOSE: "Закрыть",
-					NEXT: "Вперед",
-					PREV: "Назад" // PLAY_START: "Start slideshow",
-					// PLAY_STOP: "Pause slideshow",
-					// FULL_SCREEN: "Full screen",
-					// THUMBS: "Thumbnails",
-					// DOWNLOAD: "Download",
-					// SHARE: "Share",
-					// ZOOM: "Zoom"
+	var map = new ymaps.Map('map', {
+		center: [53.459535317801425, 49.42510323740752],
+		zoom: 10,
+		controls: ['zoomControl', 'fullscreenControl']
+	}, {
+		searchControlProvider: 'yandex#search'
+	}); // Создание метки с круглой активной областью.
 
-				}
-			},
-			type: 'inline'
-		});
-		$(".modal-close-js").click(function () {
-			$.fancybox.close();
-		});
-		$(document).on('click', '.link-modal-stock-js', function () {
-			console.log($(this).attr("href"));
-			$($(this).attr("href") + " .modal-content").html($(this).parent().find('.js-block').html());
-		});
-		$(document).on('click', '.link-modal', function () {
-			var th = $(this);
-			var modal = th.attr('href');
-			$(modal).find(".order").val(th.data('order'));
-			$(modal).find(".form-wrap__title--js").html(th.data('title')); // $(modal).find(".form-wrap__text--js").html(th.data('text')); 
+	var circleLayout = ymaps.templateLayoutFactory.createClass('<div>' + '<a class="mark-modal-{{ properties.number }} mark-modal link-modal btn-primary"  href="#modal-call" data-title="выбранный филиал: " data-map-text="{{ properties.name }}"  data-btn="подобрать филиал" data-order="{{ properties.name }}" >' + '	<svg class="icon icon-home ">' + '<use xlink:href="img/svg/sprite.svg#home"></use>' + '	</svg>' + '	</a></div>');
 
-			$(modal).find(".form-wrap__btn").text(th.data('btn'));
-
-			if ($(this).hasClass("modal-win__btn")) {
-				$(modal).find(".order").val("Акция: " + th.parent().find(".title").text());
-			}
-
-			if ($(this).hasClass("s-services__btn")) {
-				$(modal).find(".order").val("Заявка на: " + th.parents(".s-services__item").find(".s-services__item-title").text());
+	function addMark(number, name, coord) {
+		var circlePlacemark = circlePlacemark + number;
+		var circlePlacemark = new ymaps.Placemark(coord, {
+			number: number,
+			name: name
+		}, {
+			iconLayout: circleLayout,
+			iconShape: {
+				type: 'Circle',
+				coordinates: [20, 20],
+				radius: 20
 			}
 		});
-	},
-	// /magnificPopupCall
-	mobileMenu: function mobileMenu() {
-		// закрыть/открыть мобильное меню
-		btnToggle.click(function () {
-			btnToggle.toggleClass("on"); // $("body").toggleClass("fixed");
-
-			menu.toggleClass("active");
-			$("body").toggleClass("compensate-for-scrollbar");
-			$("body, html").toggleClass("fixed"); // JSCCommon.paddRight(' body');
-
-			return false;
-		}); // $('.menu-mobile--js ul li a').on('click', function () {
-		// 	$(".menu-mobile--js .toggle-mnu").click();
-		// });
-
-		$(document).mouseup(function (e) {
-			var container = $(".menu-mobile--js.active");
-
-			if (container.has(e.target).length === 0) {
-				btnToggle.removeClass("on"); // $("body").toggleClass("fixed");
-
-				menu.removeClass("active");
-				$("body, html").removeClass("fixed").css("paddingRight", 0); // JSCCommon.paddRight(' body.fixed');
-			}
+		circlePlacemark.events.add('mouseenter', function (e) {
+			var modalMark = $('.mark-modal-' + number);
+			modalMark.addClass('hover');
 		});
-	},
-	// /mobileMenu
-	// табы  . 
-	tabscostume: function tabscostume(tab) {
-		$('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
-			$(this).addClass('active').siblings().removeClass('active').closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active').eq($(this).index()).fadeIn().addClass('active');
+		circlePlacemark.events.add('mouseleave', function (e) {
+			var modalMark = $('.mark-modal-' + number);
+			modalMark.removeClass('hover');
 		});
-	},
-	// /табы  . 
-	// /nlineSVG
-	// CustomInputFileCustomInputFile() {
-	// 	const file = $(".add-file input[type=file]");
-	// 	file.change(function () {
-	// 		const filename = $(this).val().replace(/.*\\/, "");
-	// 		const name = $(".add-file__filename  ");
-	// 		name.text(filename);
-	// 	});
-	// },
-	// /CustomYoutubeBlock
-	inputMask: function inputMask() {
-		// mask for input
-		$('input[type="tel"]').attr("pattern", "[+][0-9]{1}[(][0-9]{3}[)]-[0-9]{3}-[0-9]{2}-[0-9]{2}").inputmask("+9(999)-999-99-99");
-	} // /inputMask
+		circlePlacemark.events.add('click', function (e) {
+			var modalMark = $('.mark-modal-' + number);
+			var eMap = e.get('target');
+			$("#modal-call").find(".order").val(modalMark.data('order'));
+			$("#modal-call").find(".form-wrap__title--js").html(modalMark.data('title'));
+			$("#modal-call").find(".dop-row-js").removeClass("d-none");
+			$("#modal-call").find(".form-wrap__text-map--js").removeClass("d-none").html(modalMark.data('map-text'));
+			$("#modal-call").find(".form-wrap__btn").text(modalMark.data('btn'));
+			$.fancybox.open({
+				src: '#modal-call',
+				arrows: false,
+				infobar: false,
+				touch: false,
+				autoFocus: false,
+				closeExisting: true,
+				i18n: {
+					en: {
+						CLOSE: "Закрыть",
+						NEXT: "Вперед",
+						PREV: "Назад" // PLAY_START: "Start slideshow",
+						// PLAY_STOP: "Pause slideshow",
+						// FULL_SCREEN: "Full screen",
+						// THUMBS: "Thumbnails",
+						// DOWNLOAD: "Download",
+						// SHARE: "Share",
+						// ZOOM: "Zoom"
 
-}; // JSCCommon.LazyFunction();
+					}
+				},
+				type: 'inline'
+			});
+		});
+		map.geoObjects.add(circlePlacemark);
+	}
 
-/***/
+	var MapMarks = (_MapMarks = {
+		" Тольятти, ул. Мира, 77, офис 1, этаж 1": [53.506904570990805, 49.421758499999996],
+		// Тольятти, ул. Мира, 77, офис 1, этаж 1
+		"Тольятти, ул. Льва Яшина, 11, эт. 2": [53.542287570965684, 49.36147249999999],
+		// Тольятти, ул. Льва Яшина, 11, эт. 2
+		' Тольятти, Комсомольская ул., 165, "ТПК"': [53.51474407098192, 49.4397784999999],
+		// Тольятти, Комсомольская ул., 165, "ТПК"
+		"Тольятти, ул. Автостроителей, 68А, оф 311": [53.533206570942305, 49.325566999999886],
+		// Тольятти, ул. Автостроителей, 68А, оф 311
+		"Тольятти, Ботаническая ул., 22, этаж 2": [53.54394107094089, 49.293703499999985],
+		// Тольятти, Ботаническая ул., 22, этаж 2
+		"Тольятти, ул. Дзержинского, 90, этаж 2": [53.53907157095745, 49.272431499999996],
+		// Тольятти, ул. Дзержинского, 90, этаж 2
+		"Тольятти, ул. Громовой, 35, стр. 1, этаж 3, офис 211": [53.48740657099867, 49.487371499999924],
+		// Тольятти, ул. Громовой, 35, стр. 1, этаж 3, офис 211
+		"Тольятти, просп. Степана Разина, 36А, офис 349а, этаж 3": [53.517297744599574, 49.29390550000002],
+		// Тольятти, просп. Степана Разина, 36А, офис 349а, этаж 3
+		"Тольятти, Ленинградская ул., 33А": [53.50243257097931, 49.40472649999993],
+		// Тольятти, Ленинградская ул., 33А
+		"Тольятти, Тополиная ул., 12, ТД Даниловский, этаж 4, офис 410": [53.54054867357269, 49.34524049999998],
+		// Тольятти, Тополиная ул., 12, ТД Даниловский, этаж 4, офис 410
+		"Тольятти, ул. Свердлова, 17А, офис 109": [53.5271475709848, 49.290541499999904],
+		// Тольятти, ул. Свердлова, 17А, офис 109
+		"Тольятти, ул. Маршала Жукова, 34, цок. этаж, подъезд 1": [53.50787850440915, 49.300063999999985],
+		// Тольятти, ул. Маршала Жукова, 34, цок. этаж, подъезд 1
+		"Тольятти, бул. 50 лет Октября, 1": [53.528512570988376, 49.39725249999999]
+	}, _defineProperty(_MapMarks, "\u0422\u043E\u043B\u044C\u044F\u0442\u0442\u0438, \u0431\u0443\u043B. 50 \u043B\u0435\u0442 \u041E\u043A\u0442\u044F\u0431\u0440\u044F, 1", [53.50982807096928, 49.26819149999997]), _defineProperty(_MapMarks, "Тольятти, ул. Автостроителей, 34, этаж 1", [53.538697570956415, 49.32639349999999]), _defineProperty(_MapMarks, "Тольятти, Комсомольский район, микрорайон Шлюзовой, Севастопольская ул., 1, Школа № 2", [53.46712257100456, 49.531864999999996]), _defineProperty(_MapMarks, 'Тольятти, ул. Свердлова, 15Б, ТЦ Потенциал , эт. 3, оф. 304', [53.52709407095563, 49.2932815]), _defineProperty(_MapMarks, 'Тольятти, ул. 40 лет Победы, 38, ТД "Малахит", офис 2', [53.544401070942094, 49.369890000000005]), _defineProperty(_MapMarks, "Тольятти, просп. Степана Разина, 86А, офис 27, этаж 2", [53.501147071005, 49.28641850000001]), _defineProperty(_MapMarks, "Жигулёвск, микрорайон В-1, 12", [53.40467757107591, 49.52479549999992]), _MapMarks);
+	var keys = Object.keys(MapMarks);
+
+	for (var i = 0, l = keys.length; i < l; i++) {
+		addMark(i, keys[i], MapMarks[keys[i]]);
+	}
+});

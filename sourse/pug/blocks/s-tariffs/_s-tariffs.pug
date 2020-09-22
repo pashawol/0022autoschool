@@ -9,24 +9,43 @@ mixin s-tariffs(t)
 						span.text-primary и поехали!
 			else
 				block
-			.row
-				mixin item(i, t, time, pr, timefor="набор до 28 октября 2019", place="осталось 5 мест из 20")
-					+e.col.col-lg-4
+			+e.slider--js
+				mixin item(i, t, time, pr, timefor="набор до 28 октября 2019", place="осталось 8 мест из 20")
+					+e.col
 						+e.item
 							+e.body
 								+b.star-block
-									+icon("star",'star-active')
+									mixin active()
+										+icon("star",'star-active')
+									mixin star()
+										+icon("star")
+									+active()
 									if i!== 1
-										+icon("star",'star-active')
+										+active()
 									else
-										+icon("star")
-									if i== 3
-										+icon("star",'star-active')
+										+star()
+									if i>= 3
+										+active()
 									else
-										+icon("star")
+										+star()
+										
+									if i>= 4
+										+active()
+									else
+										+star()
+									if i>= 5
+										+active()
+									else
+										+star()
+									if i>= 6
+										+active()
+									else
+										+star()
+
 								+e.title=t
-								.text-secondary= time
-								+pic(`tariff-${i}.png`,'','lazy',0)
+								//- .text-secondary= time
+								picture
+									img(src=`img/tarif/tariff-${i}.png` loading="lazy", alt="") 
 								p ГСМ (бензин)
 
 								p Страховка от ДТП
@@ -34,49 +53,228 @@ mixin s-tariffs(t)
 								p Сами выбираете время вождения
 
 								p Теоретическая курс 132 часа
-								if i== 1
-									p Практический курс для подготовки к&nbsp;сдаче экзаменов
-
-									p Подача документов в&nbsp;МРЭО
-
-									p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
-								else
-									p.strong Автосимулятор
-									p Практический курс для подготовки к&nbsp;сдаче экзаменов
-
-									p.strong  Отработка экзаменационного маршрута
-
-									p Подача документов в&nbsp;МРЭО
-
-									p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
-									if i== 3
-										p.strong  Индивидуальные практические занятия с&nbsp;проработкой нужных маршрутов 
-										p.strong  Отработка контр-аварийного вожедния
-
-									p.strong  При неудачной сдаче экзамена в&nbsp;МРЭО&nbsp;&mdash; занятие с&nbsp;разбором ошибок
-								p Персональный инструктор
-
-								p Первый взнос 1000 рублей
-
-								p Рассрочка без %&nbsp;и&nbsp;банков 
-								p.strong Вебинарное обучение в&nbsp;подарок 
-									span.text-danger до 28.10.19
-							 
-								+b.stock-block
-									//- <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
-									- for (var x = 1; x <= 3; x++)
-										//- 
-										+e.item( role="button" tabindex="0" data-toggle="tooltip" title="Записывайтесь на обучение и принимайте участие в розыгрыше приза AirPods.")
-											img.lazy(src="#" data-src=`img/@2x/tariff-stock-${x}.jpg`, alt="")
-											//- +e.dropdown 
-
+								block
 							+e.foot
 								+e.price= pr
-								+e.timefor= timefor
+								br
 								+e.btn.btn-js.link-modal(href="#modal-call" data-title=`Тариф "${t}"` data-btn="Записаться" data-order=`Записаться по тарифу "${t}"`) Записаться
 								.text-secondary= place
 					// /+e.col.col-lg-4
-				+item(1,'стандартный','от 1,5 месяцев','10 500 руб.')
-				+item(2,'комфортный','от 2 месяцев','15 000 руб.')
-				+item(3,'персональный','от 2,5 месяцев','23 000 руб.')
+				+item(1,'мини','от 1,5 месяцев','9 000 руб')
+					p Практический курс для подготовки к&nbsp;сдаче экзаменов
+
+					p Подача документов в&nbsp;МРЭО
+
+					p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+
+
+					p Первый взнос 1000 рублей
+
+					p Рассрочка без %&nbsp;и&nbsp;банков до&nbsp;6&nbsp;месяцев
+
+					p Нет скрытых платежей
+
+					p Нет платных экзаменов
+
+					p Вебинарное обучение в&nbsp;подарок
+				+item(2,'эконом','от 2 месяцев','12 000 руб')
+					p: strong Автосимулятор
+
+					p Практический курс для подготовки к&nbsp;сдаче экзаменов
+
+					p Подача документов в&nbsp;МРЭО
+
+					p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+
+
+					p Первый взнос 1000 рублей
+
+					p Рассрочка без %&nbsp;и&nbsp;банков до&nbsp;6&nbsp;месяцев
+
+					p Нет скрытых платежей
+
+					p Нет платных экзаменов
+
+					p Вебинарное обучение в&nbsp;подарок
+				+item(3,'экспресс','от 2,5 месяцев','14 000 руб')
+					p: strong Автосимулятор
+
+					p Практический курс для подготовки к&nbsp;сдаче экзаменов
+					p: srtong Отработка экзаменационного маршрута
+
+					p Подача документов в&nbsp;МРЭО
+
+					p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+
+
+					p Первый взнос 1000 рублей
+
+					p Рассрочка без %&nbsp;и&nbsp;банков до&nbsp;6&nbsp;месяцев
+
+					p Нет скрытых платежей
+
+					p Нет платных экзаменов
+
+					p Вебинарное обучение в&nbsp;подарок
+				 
+				+item(4,'стандарт','от 2,5 месяцев','16 000 руб')
+					p: strong Автосимулятор
+
+					p Практический курс для подготовки к&nbsp;сдаче экзаменов
+					p: srtong Отработка экзаменационного маршрута
+
+					p Подача документов в&nbsp;МРЭО
+
+					p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+
+					p: strong При неудачной сдаче экзамена
+						br
+						| в&nbsp;МРЭО&nbsp;&mdash; занятие с&nbsp;разбором ошибок 
+					p Первый взнос 1000 рублей
+
+					p Рассрочка без %&nbsp;и&nbsp;банков до&nbsp;6&nbsp;месяцев
+
+					p Нет скрытых платежей
+
+					p Нет платных экзаменов
+
+					p Вебинарное обучение в&nbsp;подарок
+				
+				+item(5,'люкс','от 2,5 месяцев','19 000 руб')
+					p: strong Автосимулятор
+
+					p Практический курс для подготовки к&nbsp;сдаче экзаменов
+					p: srtong Отработка экзаменационного маршрута
+
+					p Подача документов в&nbsp;МРЭО
+
+					p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+
+
+					p: strong Индивидуальные практические занятия с&nbsp;проработкой нужных маршрутов
+
+					p: strong При неудачной сдаче экзамена в&nbsp;МРЭО&nbsp; <br> &mdash; занятие с&nbsp;разбором ошибок
+
+
+					p Первый взнос 1000 рублей
+
+					p Рассрочка без %&nbsp;и&nbsp;банков до&nbsp;6&nbsp;месяцев
+
+					p Нет скрытых платежей
+
+					p Нет платных экзаменов
+
+					p Вебинарное обучение в&nbsp;подарок
+					
+				+item(6,'профи','от 2,5 месяцев','24 000 руб')
+					p: strong Автосимулятор
+
+					p Практический курс для подготовки к&nbsp;сдаче экзаменов
+					p: srtong Отработка экзаменационного маршрута
+
+					p Подача документов в&nbsp;МРЭО
+
+					p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+
+					p: strong Индивидуальные практические занятия с&nbsp;проработкой нужных маршрутов
+
+					p: strong Отработка контр-аварийного вожедния
+
+					p: strong При неудачной сдаче экзамена в&nbsp;МРЭО&nbsp; <br> &mdash; занятие с&nbsp;разбором ошибок
+
+					p: strong Персоналный инструктор
+
+
+					p Первый взнос 1000 рублей
+
+					p Рассрочка без %&nbsp;и&nbsp;банков до&nbsp;6&nbsp;месяцев
+
+					p Нет скрытых платежей
+
+					p Нет платных экзаменов
+
+					p Вебинарное обучение в&nbsp;подарок
+
 	// end s-tariffs
+//- mixin s-tariffs(t)
+//- 	// start s-tariffs
+//- 	+b.SECTION.s-tariffs.section#s-tariffs&attributes(attributes)
+//- 		.container
+//- 			if t
+//- 				+b.section-title.text-center
+//- 					h2 выбери удобный тариф 
+//- 						| 
+//- 						span.text-primary и поехали!
+//- 			else
+//- 				block
+//- 			.row
+//- 				mixin item(i, t, time, pr, timefor="набор до 28 октября 2019", place="осталось 5 мест из 20")
+//- 					+e.col.col-lg-4
+//- 						+e.item
+//- 							+e.body
+//- 								+b.star-block
+//- 									+icon("star",'star-active')
+//- 									if i!== 1
+//- 										+icon("star",'star-active')
+//- 									else
+//- 										+icon("star")
+//- 									if i== 3
+//- 										+icon("star",'star-active')
+//- 									else
+//- 										+icon("star")
+//- 								+e.title=t
+//- 								.text-secondary= time
+//- 								+pic(`tariff-${i}.png`,'','lazy',0)
+//- 								p ГСМ (бензин)
+
+//- 								p Страховка от ДТП
+
+//- 								p Сами выбираете время вождения
+
+//- 								p Теоретическая курс 132 часа
+//- 								if i== 1
+//- 									p Практический курс для подготовки к&nbsp;сдаче экзаменов
+
+//- 									p Подача документов в&nbsp;МРЭО
+
+//- 									p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+//- 								else
+//- 									p.strong Автосимулятор
+//- 									p Практический курс для подготовки к&nbsp;сдаче экзаменов
+
+//- 									p.strong  Отработка экзаменационного маршрута
+
+//- 									p Подача документов в&nbsp;МРЭО
+
+//- 									p Сопровождение в&nbsp;МРЭО до&nbsp;полной сдачи экзаменов
+//- 									if i== 3
+//- 										p.strong  Индивидуальные практические занятия с&nbsp;проработкой нужных маршрутов 
+//- 										p.strong  Отработка контр-аварийного вожедния
+
+//- 									p.strong  При неудачной сдаче экзамена в&nbsp;МРЭО&nbsp;&mdash; занятие с&nbsp;разбором ошибок
+//- 								p Персональный инструктор
+
+//- 								p Первый взнос 1000 рублей
+
+//- 								p Рассрочка без %&nbsp;и&nbsp;банков 
+//- 								p.strong Вебинарное обучение в&nbsp;подарок 
+//- 									span.text-danger до 28.10.19
+							 
+//- 								+b.stock-block
+//- 									//- <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+//- 									- for (var x = 1; x <= 3; x++)
+//- 										//- 
+//- 										+e.item( role="button" tabindex="0" data-toggle="tooltip" title="Записывайтесь на обучение и принимайте участие в розыгрыше приза AirPods.")
+//- 											img.lazy(src="#" data-src=`img/@2x/tariff-stock-${x}.jpg`, alt="")
+//- 											//- +e.dropdown 
+
+//- 							+e.foot
+//- 								+e.price= pr
+//- 								+e.timefor= timefor
+//- 								+e.btn.btn-js.link-modal(href="#modal-call" data-title=`Тариф "${t}"` data-btn="Записаться" data-order=`Записаться по тарифу "${t}"`) Записаться
+//- 								.text-secondary= place
+//- 					// /+e.col.col-lg-4
+//- 				+item(1,'стандартный','от 1,5 месяцев','10 500 руб.')
+//- 				+item(2,'комфортный','от 2 месяцев','15 000 руб.')
+//- 				+item(3,'персональный','от 2,5 месяцев','23 000 руб.')
+//- 	// end s-tariffs

@@ -24,3 +24,10 @@ mixin s-contact()
 		
 	// end s-contact
 	+b.mobile-tel.btn-js(href="tel:+7(927)268-36-77") +7 (927) 268-36-77
+	+b.alert-footer.link-modal(href="#modal-call" data-title="записаться в 1 клик" 
+		data-btn="записаться в 1 клик" data-order="записаться в 1 клик c красной полосы")
+		marquee( loop="-1")
+			- for (var x = 0; x < 10; x++)
+				| новые тарифы: стандартный - 9000 руб, экономный - 14000 руб, комфортный - 16000 руб, эффективный - 19000 руб, персональный - 24000 руб 
+		+e.DIV.btn-wrap
+			+e.DIV.btn.btn-js записаться в 1 клик

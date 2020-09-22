@@ -59,3 +59,24 @@ mixin header-block()
 							br
 							| 2. Введи промокод Легко в&nbsp;специальном поле. Цена пересчитается автоматически.
 	// end header-block
+
+mixin header-block-map()
+	// start header-block
+	+b.header-block#header-block(data-bg="img/@2x/pattern.jpg")
+		.container
+			h1 выберите ближайший к&nbsp;вам филиал
+			+e.sub-text #[span.text-primary оставьте заявку в&nbsp;нужный филиал] и&nbsp;получите расписание ближайших занятий в&nbsp;выбранном филиале.
+			.map-wrap#map
+						
+			//- <iframe src="https://yandex.ua/map-widget/v1/?um=constructor%3Adb87e64c101c358488e2d4335179bc5033ea071ebbe8c26551fe3a6251514200&amp;source=constructor" height="578"></iframe>
+			<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+			script.
+				
+				
+			+e.sub-text--foot затрудняетесь с&nbsp;выбором филиала? #[span.text-secondary мы&nbsp;поможем подобрать ближайший филиал к&nbsp;вашему дому.]
+			+e.btn-wrap
+				 
+				+e.btn.link-modal.btn-primary(href="#modal-call" data-title="подобрать филиал  " data-btn="подобрать филиал" data-order="подобрать филиал")  подобрать филиал
+	// end header-block
+
