@@ -303,7 +303,7 @@ function eventHandler() {
 		// speed: 200,
 		infinite: true,
 		arrows: true,
-		autoplay: true,
+		// autoplay: true,
 		autoplaySpeed: 3000,
 		mobileFirst: true,
 		prevArrow: arrl2,

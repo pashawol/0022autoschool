@@ -3,11 +3,8 @@
 	&__col{
 		padding-left: 15px;
 		padding-right: 15px;
-			@include media-breakpoint-down(md){
-				
-				margin-bottom: rem(10);
-			}
-			margin-bottom: rem(30);
+		 
+			margin-bottom: 15px;
 	}
 	&__slider{
 		margin-left: -15px;
@@ -40,7 +37,7 @@
 	}
 	&__body{
 		
-		padding: rem(28) rem(0);
+		padding: rem(28) rem(0) rem(10);
 		// border-bottom: 1px solid #dadde2;
 	}
 	&__foot{
@@ -88,7 +85,7 @@
 		margin-right: auto;
 		max-width: rem(300);
 		margin-top: rem(12);
-		margin-bottom: rem(12);
+		margin-bottom: rem(28);
 		
 	}
 	&__price{
