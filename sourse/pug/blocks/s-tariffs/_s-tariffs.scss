@@ -3,7 +3,11 @@
 	&__col{
 		padding-left: 15px;
 		padding-right: 15px;
-		margin-bottom: rem(40);
+			@include media-breakpoint-down(md){
+				
+				margin-bottom: rem(10);
+			}
+			margin-bottom: rem(30);
 	}
 	&__slider{
 		margin-left: -15px;
@@ -36,7 +40,7 @@
 	}
 	&__body{
 		
-		padding: rem(28) rem(10);
+		padding: rem(28) rem(0);
 		// border-bottom: 1px solid #dadde2;
 	}
 	&__foot{
@@ -98,6 +102,13 @@
 		display: inline-block;
 		background-color: $primary;
 		padding: rem(1) rem(5);
+	}
+
+
+	&__control-wrap{
+		position: relative;
+		height: rem(20);
+		margin-bottom: rem(30);
 	}
 
 		 

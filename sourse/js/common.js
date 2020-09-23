@@ -373,6 +373,7 @@ function eventHandler() {
 		// speed: 200,
 		infinite: true,
 		arrows: true,
+		autoplaySpeed: 3000,
 		mobileFirst: true,
 		prevArrow: arrl2,
 		nextArrow: arrr2,
@@ -391,6 +392,14 @@ function eventHandler() {
 		}],
 
 	});
+	$(".s-tariffs__slider  .r").clone().prependTo('.s-tariffs__control-wrap');
+	$(".s-tariffs__slider  .l").clone().prependTo('.s-tariffs__control-wrap');
+	$(".s-tariffs__control-wrap ").on("click", '.r',  () => {
+		$('.s-tariffs__slider--js').slick('slickPrev');
+	})
+	$(".s-tariffs__control-wrap ").on("click", '.l',  () => {
+		$('.s-tariffs__slider--js').slick('slickNext');
+	})
 
 	var gets = (function () {
 		var a = window.location.search;
